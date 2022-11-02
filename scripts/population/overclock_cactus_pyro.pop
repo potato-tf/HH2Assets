@@ -97,26 +97,6 @@ WaveSchedule
 				ItemName "The Manmelter"
 			}
 		}
-		GasA
-		{
-			Name "Stable Mod: Australian Gas"
-			Attribute "add cond on hit duration"
-			Cap 5
-			Increment 5
-			Cost 0
-			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
-			{
-				"effect cond override" 24
-				"provide on active" 1
-			}
-			Description "Gas Effect now coats robots in jarate"
-			Tier 1
-            AllowPlayerClass Pyro
-			AllowedWeapons
-			{
-				ItemName "The Gas Passer"
-			}
-		}
 ////Pyro Melee
 		Homewrecker
 		{
