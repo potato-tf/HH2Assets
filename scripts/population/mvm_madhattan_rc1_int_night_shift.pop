@@ -11,7 +11,6 @@
 #base overclock_cactus_engineer.pop
 #base overclock_cactus_medic.pop
 #base overclock_cactus_pyro.pop
-#base overclock_cactus_sniperspy.pop
 //Gate tank model made by Bazooks
 WaveSchedule
 {
@@ -19,7 +18,8 @@ WaveSchedule
 	CanBotsAttackWhileInSpawnRoom No
 	RespawnWaveTime 5
 	WaveStartCountdown 3   
-	FixHuntsmanDamageBonus 1   
+	FixHuntsmanDamageBonus 1  
+	UpgradeStationKeepWeapons 1
 	RobotLimit 26  
 	NoRomevisionCosmetics 1  
 	PrecacheModel "models/bots/boss_bot/boss_tank_gate.mdl"

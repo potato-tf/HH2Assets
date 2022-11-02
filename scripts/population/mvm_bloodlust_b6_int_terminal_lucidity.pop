@@ -16,6 +16,7 @@ population
 	NoRomevisionCosmetics	1	[$SIGSEGV]
 	NoThrillerTaunt			1	[$SIGSEGV]
 	TextPrintTime			0	[$SIGSEGV]
+	UpgradeStationKeepWeapons 1
 	// Custom nav
 	CustomNavFile	"mvm_bloodlust_b6_tind"	[$SIGSEGV]
 	// Model precache

@@ -16,6 +16,7 @@ how_tf_do_you_make_an_exp_again?
     CanBotsAttackWhileInSpawnRoom no
     RespawnWaveTime 5
     Advanced 1
+	UpgradeStationKeepWeapons 1
     NoRomevisionCosmetics 1 [$SIGSEGV]
 	PrecacheModel "models/bots/boss_bot/boss_tank_color" [$SIGSEGV]
     PrecacheModel "models/bots/soldier/bot_soldier_gibby.mdl" [$SIGSEGV]

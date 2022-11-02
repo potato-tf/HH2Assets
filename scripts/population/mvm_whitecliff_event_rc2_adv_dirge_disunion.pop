@@ -19,6 +19,7 @@ population
 	NoThrillerTaunt			1	[$SIGSEGV]
 	RobotLimit				24	[$SIGSEGV]
 	TextPrintTime			0	[$SIGSEGV]
+	UpgradeStationKeepWeapons 1
 	// Model precache
 	PrecacheModel	"models\weapons\c_models\c_entrenched_gun\c_scattergun.mdl"	[$SIGSEGV]
 	PrecacheModel	"models\workshop\weapons\c_models\c_hornetsnest\c_atom_launcher.mdl"	[$SIGSEGV]

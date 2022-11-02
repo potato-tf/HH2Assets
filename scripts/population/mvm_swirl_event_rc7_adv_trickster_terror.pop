@@ -64,6 +64,7 @@ bozo_mission_be_liek
     NoRomevisionCosmetics 1 // Dude fuck off
     //FixHuntsmanDamageBonus 0 // How about, no. 720 damage on headshot wtf
     NoCritPumpkin 1 
+	UpgradeStationKeepWeapons 1
     NoHolidayPickups 1
     BodyPartScaleSpeed 10
     FastNPCupdate 1

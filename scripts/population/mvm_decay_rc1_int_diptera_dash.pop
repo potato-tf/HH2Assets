@@ -29,6 +29,7 @@ WaveSchedule
 	NoThrillerTaunt 1
 	NoCritPumpkin 1
 	TextPrintTime 0
+	UpgradeStationKeepWeapons 1
 
 	ExtraTankPath   //Adds tank path to follow
 	{
@@ -1823,6 +1824,7 @@ Mission	// Sentry Busters - All
                 		PingSound "npc\combine_gunship\ping_search.wav"  
                 		Name "tankboss"
                 		StartingPathTrackNode "blimp_left_1"
+						NoCrushDamage 1
 
                			OnKilledOutput
                 		{
@@ -1871,6 +1873,7 @@ Mission	// Sentry Busters - All
                 		PingSound "npc\combine_gunship\ping_search.wav"  
                 		Name "tankboss"
                 		StartingPathTrackNode "blimp_right_1"
+						NoCrushDamage 1
 
                			OnKilledOutput
                 		{

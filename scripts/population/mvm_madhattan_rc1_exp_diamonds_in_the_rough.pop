@@ -12,6 +12,7 @@
 #base overclock_cactus_medic.pop
 
 
+
 //CREDITS
 
 // Mission made by DaMno 
@@ -48,6 +49,7 @@ WaveSchedule
     ImprovedAirblast 1  
     PlayerRobotsUsePlayerAnimation 1
     //CustomUpgradesFile "mvm_upgrades_damno_v1.txt" // No custom upgrades restriction real
+	UpgradeStationKeepWeapons 1
 
     PlayerAttributes
     {
