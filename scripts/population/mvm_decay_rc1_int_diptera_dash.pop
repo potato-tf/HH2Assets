@@ -86,7 +86,7 @@ WaveSchedule
             		}
             		training_annotation
             		{
-                		"display_text" "Icoming blimp! Watch the skies!"
+                		"display_text" "Incoming blimp! Watch the skies!"
                 		"lifetime" "5"
                 		"origin" "-340 3495 1200"
                 		"targetname" "annotation_deploy"
