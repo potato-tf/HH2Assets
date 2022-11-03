@@ -39,12 +39,11 @@ WaveSchedule
 			SecondaryAttributes
 			{
 				"mult projectile count" 3
-				"grenade damage reduction on world contact" 15
+				"grenade damage reduction on world contact" 18
 				"damage bonus HIDDEN" -0.95
 				"projectile spread angle penalty" 5
 				"fire rate penalty HIDDEN" 0.8
 				"rocket jump damage reduction" -0.9	
-				"mult dmg vs tanks" -0.3
 			}
 			Description "Chamber now fires 4 bombs at once and deals increased damage when exploded via timer, but direct hits deal 95% less damage and fires 80% slower" 
 			Tier 1
