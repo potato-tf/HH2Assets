@@ -16,10 +16,9 @@ WaveSchedule
 			SecondaryAttributes
 			{
 				"damage bonus HIDDEN" 0.15
-				"bleeding duration" 5
-				"mult bleeding dmg" 2
+				"bleeding duration" 3
 			}
-			Description "+15% damage bonus +On hit: Bleed for 5 seconds" 
+			Description "+15% damage bonus +On hit: Bleed for 3 seconds" 
 			Tier 1
             AllowedWeapons
 			{
