@@ -121,14 +121,13 @@ WaveSchedule
 		Southern
 		{
 			Name "Unstable Mod: Unstable Mechanisms"
-			Attribute "metal_pickup_decreased"
-			Cap 0.1
-			Increment -0.9
+			Attribute "engy sentry damage bonus"
+			Cap 1.35
+			Increment 0.35
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"no primary ammo from dispensers while active" 1
-				"engy sentry damage bonus" 0.35
 			}
 			Description "(i)when active: +35% sentry damage bonus -90% less metal from packs and dispensers" 
 			Tier 1
