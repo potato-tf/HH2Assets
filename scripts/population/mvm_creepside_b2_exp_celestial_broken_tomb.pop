@@ -22,9 +22,9 @@ population
 			//	Target tomb1_disable
 			//	Action Trigger
 			//}
-	
+			
 	PrecacheModel "models/bots/sniper_boss/bot_sniper_boss.mdl"
-	PointTemplates  
+	PointTemplates [$SIGSEGV]
     {    
 		annotations
 		{
@@ -161,7 +161,7 @@ population
 			Name "Star Cosmil Railgunner"
 			ClassIcon sniper_penetrator
 			Health 2500
-			UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl"  
+			UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl" [$SIGSEGV]
 			Skill Hard
 			Attributes AlwaysFireWeapon
 			Attributes MiniBoss
@@ -424,7 +424,7 @@ population
 		    }
 		}
 	}
-	SpawnTemplate   "annotations" 
+	SpawnTemplate [$SIGSEGV] "annotations" 
 	Mission
 	{
 	    Objective DestroySentries
@@ -517,7 +517,7 @@ population
 			Target  wave_finished_relay
 			Action Trigger
 		}
-		Explanation   
+		Explanation [$SIGSEGV] 
  	 	{
 			Line "{green}Zombies are preparing an attack on your base!"
 			Line "{green}They have brought giant robots with them"
@@ -525,7 +525,7 @@ population
 		WaveSpawn 
 		{
 		    Name "a1"
-			TotalCurrency	100 
+			TotalCurrency	0
 		    TotalCount	2
 			MaxActive	2
 			SpawnCount 	2
@@ -862,7 +862,7 @@ population
 			Target  wave_finished_relay
 			Action Trigger
 		}
-		Explanation   
+		Explanation [$SIGSEGV] 
  	 	{
 			Line "{green}Excellent work, you have destroyed the half of the zombies"
 			Line "{green}However, they won't go down easily"
@@ -1177,14 +1177,14 @@ population
 				UseMeleeThreatPrioritization 1
 				Item    "Batsaber"
 				Item	"the c.a.p.p.e.r"
-				WeaponSwitch    //Periodically switches weapon
+				WeaponSwitch [$SIGSEGV]  //Periodically switches weapon
                 {
                     Delay 5 //Time before the first weapon switch starts (Default: 10)
                     Cooldown 4 //Time between each weapon switch (Default: 10)
                     Repeats 0 //How many times should bot switch weapons in total (Default: 0 - Infinite)
 					Type "Melee" 
 				}
-				WeaponSwitch    //Periodically switches weapon
+				WeaponSwitch [$SIGSEGV]  //Periodically switches weapon
                 {
                     Delay 2.5 //Time before the first weapon switch starts (Default: 10)
                     Cooldown 4 //Time between each weapon switch (Default: 10)
@@ -1241,7 +1241,7 @@ population
 					ItemName "TF_WEAPON_SPELLBOOK"
 					"is_passive_weapon" 1
 				}
-				Spell   //Gives specified spell to bots.
+				Spell [$SIGSEGV] //Gives specified spell to bots.
 				{
 					Delay 1 
 					Cooldown 5 
@@ -1267,7 +1267,7 @@ population
 			Target  wave_finished_relay
 			Action Trigger
 		}
-		Explanation   
+		Explanation [$SIGSEGV] 
  	 	{
 			Line "{green}Large enemy forces are advancing towards your loaction"
 			Line "{green}It's the C------"
@@ -1277,7 +1277,7 @@ population
 		WaveSpawn 
 		{
 		    Name "c1"
-			TotalCurrency	100 
+			TotalCurrency	50
 		    TotalCount	1
 			MaxActive	1
 			SpawnCount 	1
@@ -1292,7 +1292,7 @@ population
 			TFBot
 			{
 			    Class Soldier
-				Name "WaffentrÃ¤ger"
+				Name "Waffenträger"
 				ClassIcon soldier_directhit_spammer_giant
 				Health 30000
 				Skill Expert
@@ -1323,7 +1323,7 @@ population
 		WaveSpawn 
 		{
 		    Name "c2"
-			TotalCurrency	100 
+			TotalCurrency	50 
 		    TotalCount	15
 			MaxActive	9
 			SpawnCount 	3
@@ -1362,7 +1362,7 @@ population
 				Name "Skeleton Knight"
 				UseCustomModel "models/bots/skeleton_sniper/skeleton_sniper.mdl" 
 				UseHumanAnimations 1 
-				Action Mobber  
+				Action Mobber [$SIGSEGV]
 				Attributes IgnoreFlag
 				Attributes DisableDodge 
 			}
@@ -1394,7 +1394,7 @@ population
 				ClassIcon sniper_bow_multi
 				Name "Skeleton Archer"
 				UseCustomModel "models/bots/skeleton_sniper/skeleton_sniper.mdl" 
-				Action Mobber  
+				Action Mobber [$SIGSEGV]
 				UseHumanAnimations 1 
 				Attributes IgnoreFlag
 				Attributes DisableDodge
@@ -1413,7 +1413,7 @@ population
 		WaveSpawn 
 		{
 		    Name "c3"
-			TotalCurrency	100
+			TotalCurrency	50
 		    TotalCount	3
 			MaxActive	3
 			SpawnCount 	1
@@ -1432,7 +1432,7 @@ population
 		WaveSpawn 
 		{
 		    Name "c4"
-			TotalCurrency	100
+			TotalCurrency	150
 		    TotalCount	3
 			MaxActive	3
 			SpawnCount 	3
@@ -1580,7 +1580,7 @@ population
 		WaveSpawn 
 		{
 		    Name "c9"
-			TotalCurrency	100
+			TotalCurrency	50
 		    TotalCount	4
 			MaxActive	2
 			SpawnCount 	1
@@ -1600,11 +1600,11 @@ population
 				WeaponRestrictions PrimaryOnly
 				Attributes MiniBoss
 				Attributes HoldFireUntilFullReload
-				AddCond  
+				AddCond [$SIGSEGV]
 				{
 					Name TF_COND_SODAPOPPER_HYPE
 				}
-				HomingRockets  
+				HomingRockets [$SIGSEGV]
 				{
 					IgnoreDisguisedSpies 1
 					IgnoreStealthedSpies 1
@@ -1632,7 +1632,7 @@ population
 		WaveSpawn 
 		{
 		    Name "csupport"
-			TotalCurrency	100
+			TotalCurrency    50
 		    TotalCount	30
 			MaxActive	6
 			SpawnCount 	2
@@ -1661,7 +1661,7 @@ population
 			Target  wave_finished_relay
 			Action Trigger
 		}
-		Explanation   
+		Explanation [$SIGSEGV] 
  	 	{
 			Line "{red}Establishing control over the zombies...Success"
 		}
@@ -1683,7 +1683,7 @@ population
 		WaveSpawn 
 		{
 		    Name "d2"
-			TotalCurrency	100
+			TotalCurrency	50
 		    TotalCount	16
 			MaxActive	6
 			SpawnCount 	2
@@ -1701,7 +1701,7 @@ population
 		WaveSpawn 
 		{
 		    Name "d3"
-			TotalCurrency	100
+			TotalCurrency	50
 		    TotalCount	30
 			MaxActive	12
 			SpawnCount 	3
@@ -1722,7 +1722,7 @@ population
 			Name "d4"
 			TotalCount 1
 			WaitBeforeStarting 3
-			TotalCurrency 100
+			TotalCurrency 50
 			
 			FirstSpawnOutput                                                                                                                                                            
 			{
@@ -1754,7 +1754,7 @@ population
 		{
 		    Name "d5"
 			WaitForAllDead "d4"
-			TotalCurrency	100
+			TotalCurrency	50
 		    TotalCount	8
 			MaxActive	4
 			SpawnCount 	2
@@ -1824,7 +1824,7 @@ population
 				UseHumanAnimations 1
 				Name "Skeleton Ambusher"
 				Item "The Back Scatter"
-				Action Mobber  
+				Action Mobber [$SIGSEGV]
 				Attributes IgnoreFlag
 				Attributes DisableDodge 
 			}
@@ -1833,7 +1833,7 @@ population
 		{
 		    Name "d8"
 			WaitForAllDead "d5"
-			TotalCurrency	100
+			TotalCurrency	50
 		    TotalCount	4
 			MaxActive	2
 			SpawnCount 	2
@@ -1857,7 +1857,7 @@ population
 		{
 		    Name "d9"
 			WaitForAllDead "d5"
-			TotalCurrency	100
+			TotalCurrency	50
 		    TotalCount	36
 			MaxActive	10
 			SpawnCount 	4
@@ -1969,7 +1969,7 @@ population
 			Target  wave_finished_relay
 			Action Trigger
 		}
-		Explanation   
+		Explanation [$SIGSEGV] 
  	 	{
 			Line "{red}Superior entity will arrive shortly"
 		}
@@ -2072,7 +2072,6 @@ population
 					ClassIcon heavy_brass_nys
 					Item "The Brass Beast"
 					Item "Road Rage"
-					Item "Road Block"
 					Skill Expert
 					Health 5000
 					WeaponRestrictions PrimaryOnly
@@ -2188,21 +2187,21 @@ population
 				Item "starduster"
 				Item "shooting star"
 			    ClassIcon sniper_blast_hyper
-				UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl"  
-			    Action Mobber  
+				UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl" [$SIGSEGV]
+			    Action Mobber [$SIGSEGV]
 				Attributes	"MiniBoss"
 				Attributes  "AlwaysFireWeapon"
-				RocketCustomParticle eyeboss_projectile  
+				RocketCustomParticle eyeboss_projectile [$SIGSEGV]
 			    Skill Expert
 			    Health 112500
-				FastUpdate 1  
+				FastUpdate 1 [$SIGSEGV]
 			    Scale 6
 			    ItemAttributes
 			    {
 		            ItemName "shooting star"
 				    "override projectile type" 2 
 		            "dmg bonus vs buildings" 1.5
-		            "damage bonus" 3
+		            "damage bonus" 4
 			        "killstreak tier" 3
 			        "fire rate bonus" 2.7
 					"sniper only fire zoomed" 0
