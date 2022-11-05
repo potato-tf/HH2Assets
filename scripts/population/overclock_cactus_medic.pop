@@ -58,7 +58,8 @@ WaveSchedule
                 "mult bleeding delay" -0.9
                 "mult bleeding dmg" 0.25
                 "move speed bonus" -0.1
-            
+			}
+		}
 		NeedleBalancedB
 		{
 			Name "Balanced Overclock: Biohazard Needle"
