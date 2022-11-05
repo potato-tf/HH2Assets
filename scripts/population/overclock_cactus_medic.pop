@@ -27,6 +27,38 @@ WaveSchedule
 				ItemName "Festive Crusader's Crossbow"
 			}
 		}
+		XbowColonel
+        {
+            Name "Screwdriver"
+            Attribute "bleeding duration"
+            Cap 5
+            Increment 5
+            Cost 0
+            Description "Cannot pierce or heal, but can cause heavy damage to even tanks. Lowers reload, fire rate and move speed."
+            AllowPlayerClass Medic
+            AllowedWeapons // Restricts upgrade to specified weapons
+            {
+                itemname "The Crusader's Crossbow"
+                ItemName "Festive Crusader's Crossbow"
+            }
+            SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+            {
+                "damage bonus" 0.2
+                "mult dmg vs tanks" 1.75
+                "override projectile type" 2
+                "mini rockets" 1
+                "no self blast dmg" 2
+                "Reload time increased" 2.5
+                "halloween fire rate bonus" 1.5
+                "Projectile speed decreased" -0.65
+                "Blast radius decreased" -0.95
+                "centerfire projectile" 1
+                "self dmg push force decreased" -1
+                "projectile gravity" 1
+                "mult bleeding delay" -0.9
+                "mult bleeding dmg" 0.25
+                "move speed bonus" -0.1
+            
 		NeedleBalancedB
 		{
 			Name "Balanced Overclock: Biohazard Needle"
@@ -201,7 +233,7 @@ WaveSchedule
 		}
 		HuntsmanA
 		{
-			Name "Unstable Mod: Rubber Compound"
+			Name "Stable Mod: Rubber Compound"
 			Attribute "grenade bounce speed"
 			Cap 0.95
 			Increment 0.95
@@ -209,7 +241,6 @@ WaveSchedule
 			SecondaryAttributes
 			{
 				"projectile lifetime" 2.5
-				"dmg penalty vs players" -0.2
 			}
 			Description "+Arrows now bounce -20% damage penalty" 
 			Tier 1

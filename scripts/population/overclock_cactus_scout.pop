@@ -128,10 +128,10 @@ WaveSchedule
 		{
 			Name "Stable Mod: Combo Bullets"
 			Attribute "critboost on kill"
-			Cap 3.0
-			Increment 3.0
+			Cap 5.0
+			Increment 5.0
 			Cost 0
-			Description "For every kill get 3 seconds of crit boost" 
+			Description "For every kill get 5 seconds of crit boost" 
 			Tier 1
             AllowPlayerClass Scout
 			AllowedWeapons
@@ -203,7 +203,7 @@ WaveSchedule
 			SecondaryAttributes
 			{
 				"max health additive penalty" 15
-				"mult bleeding dmg" 3
+				"mult bleeding dmg" 2
 				"bleeding duration" 5
 			}
 			AllowedWeapons

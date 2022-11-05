@@ -79,12 +79,12 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"explosive bullets" 100
+				"explosive bullets" 135
 				"blast dmg to self increased" -0.25
 				"fire rate penalty" 2.5
 				"max bullet range" 750
 				"dmg penalty vs players" -0.35
-				"engy building health bonus" 0.35 
+				"engy building health bonus" 0.5 
 			}
 			Description "+Primary fire now uses an explosive +35% max building health -250% slower firing speed" 
 			Tier 1
@@ -127,8 +127,7 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"provide on active" 1
-				"metal_pickup_decreased" -0.9
+				"no primary ammo from dispensers while active" 1
 				"engy sentry damage bonus" 0.35
 			}
 			Description "(i)when active: +35% sentry damage bonus -90% less metal from packs and dispensers" 
@@ -162,8 +161,8 @@ WaveSchedule
 		{
 			Name "Balanced Overclock: Magnum Chamber"
 			Attribute "damage bonus"
-			Cap 1.35
-			Increment 0.35
+			Cap 1.75
+			Increment 0.75
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{

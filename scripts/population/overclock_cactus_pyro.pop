@@ -121,15 +121,15 @@ WaveSchedule
 		{
 			Name "Stable Mod: Heavy Mallet"
 			Attribute "dmg taken from bullets reduced"
-			Cap 0.65
-			Increment -0.35
+			Cap 0.5
+			Increment -0.5
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"provide on active" 1
 				"damage force reduction" 0.75
 			}
-			Description "(i)When active all +35% bullet resistance +75% resistant to knockback"
+			Description "(i)When active all +50% bullet resistance +75% resistant to knockback"
 			Tier 1
 			AllowedWeapons
 			{
