@@ -384,16 +384,6 @@ WaveSchedule {
 				"SPELL: Halloween voice modulation" 1
 			}
 		}
-		playermed {
-			Class Medic
-			Name "Duplicitous Doppelganger"
-			Skill Expert
-			Attributes IgnoreFlag
-			Attributes DisableDodge
-			
-			UseHumanModel 1
-			UseHumanAnimations 1
-		}
 		playermedmobber{
 			Class Medic
 			Name "Duplicitous Doppelganger"

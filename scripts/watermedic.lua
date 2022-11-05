@@ -144,21 +144,24 @@ function OnGameTick()
 	end
 end
 
+function OnWaveSuccess(wave)
+	currentwave = 0
+end
+
 function SpecificWaveGameTick()
 	local alive = 0
-	local ghostcond = 77
 
 	for p, datatable in pairs(players) do
 		local player = datatable.entity
 
-		if player:InCond(ghostcond) == 1 and not datatable.reanimstate then
+		if player:InCond(TF_COND_HALLOWEEN_GHOST_MODE) == 1 and not datatable.reanimstate then
 			--if ghost but doesn't have a reanim yet
 			CreateReanim(datatable)
 			BecomeGhost(p, datatable)
 		elseif datatable.reanimstate and datatable.reanimentity == nil then
 			--if a reanim somehow gets destroyed, then force respawn the player
 			player:ForceRespawn()
-		elseif player:InCond(ghostcond) == 0 and player:IsAlive() then
+		elseif player:InCond(TF_COND_HALLOWEEN_GHOST_MODE) == 0 and player:IsAlive() then
 			--if alive/not ghost
 			--print("alive")
 			alive = alive + 1
@@ -289,10 +292,7 @@ end
 function MimicPlayers()
 	local totalplayercount = 0
 	local attackbotcount = 0
-	local supportbotcount = 0
-	local VACCINATOR = 998
 	local TOTALHP = 21000
-	local WANTEDATTACK = 3
 	local bots = {}
 	
 	for p, _ in pairs(players) do
@@ -318,50 +318,30 @@ function MimicPlayers()
 		for attr, _ in pairs(melee:GetAllAttributeValues()) do
 			meleeattr = meleeattr + 1
 		end
-	
-		--if (p.m_iDamageDone >= p.m_iHealPoints) or (totalplayercount - supportbotcount <= WANTEDATTACK) then
-		if 1 then
-		--if player has done more dmg than heal 
-			--or the total number of players - number of processed supports is less than wanted attacker threshold
-			--3 players, 0 healers -> pass
-			--6 players, 3 healers -> pass
-			--4 players, 0 healer -> fails
 		
-			attackbotcount = attackbotcount + 1
-			botname = "attack" .. attackbotcount
-			bot = ents.FindByName(botname)
+		attackbotcount = attackbotcount + 1
+		botname = "attack" .. attackbotcount
+		bot = ents.FindByName(botname)
+		
+		local botSecondary = bot:GiveItem(secondary:GetItemName())
+		botSecondary.m_flChargeLevel = 100 --max uber here
+		
+		if primaryattr >= meleeattr then
+			bot:WeaponStripSlot(LOADOUT_POSITION_MELEE)
+			CopyPrimary(bot, primary)
+		else 
+			bot:WeaponStripSlot(LOADOUT_POSITION_PRIMARY)
+			CopyMelee(bot, melee)
+		end
+		
+		p:SetName(p:GetPlayerName())
+		
+		if p:InCond(TF_COND_HALLOWEEN_GHOST_MODE) == 0 and p:IsAlive() then --don't aggro lock if player isn't alive
+			local interruptstring = "interrupt_action -posent " .. p:GetName() .. " -lookposent " .. p:GetName() 
+			.. " -killlook -waituntildone -alwayslook"
 			
-			CopySecondary(bot, secondary)
-			
-			if primaryattr >= meleeattr then
-				bot:WeaponStripSlot(LOADOUT_POSITION_MELEE)
-				CopyPrimary(bot, primary)
-			else 
-				bot:WeaponStripSlot(LOADOUT_POSITION_PRIMARY)
-				CopyMelee(bot, melee)
-			end
-			
-			p:SetName(p:GetPlayerName())
-			
-			if p:IsAlive() then --if player is dead while mimics are spawning
-				local interruptstring = "interrupt_action -posent " .. p:GetName() .. " -lookposent " .. p:GetName() 
-				.. " -killlook -waituntildone -alwayslook"
-				--print(interruptstring)
-				bot:BotCommand(interruptstring)
-			end
-			
-		-- else --healer
-			-- supportbotcount = supportbotcount + 1
-			-- botname = "support" .. supportbotcount
-			-- bot = ents.FindByName(botname)
-			
-			-- CopyPrimary(bot, primary)
-			-- CopySecondary(bot, secondary)
-			-- CopyMelee(bot, melee)
-			
-			-- if secondary.m_iItemDefinitionIndex == VACCINATOR then --make bot recognize it has vacc
-				-- bot:GetPlayerItemBySlot(LOADOUT_POSITION_SECONDARY):SetAttributeValue("fists have radial buff", 3)
-			-- end
+			--print(interruptstring)
+			bot:BotCommand(interruptstring)
 		end
 		
 		for _, item in pairs(p:GetAllItems()) do
@@ -370,10 +350,12 @@ function MimicPlayers()
 				if botitem ~= nil then --some items fail
 					CopyAttribute("attach particle effect", item, botitem, true)
 					CopyAttribute("set item tint RGB", item, botitem, true)
+					CopyAttribute("set item tint RGB 2", item, botitem, true) --i think this is for team color paints?
 					CopyAttribute("SPELL: set item tint RGB", item, botitem, true)
 					CopyAttribute("SPELL: set Halloween footstep type", item, botitem, true)
 					CopyAttribute("custom texture lo", item, botitem, true)
 					CopyAttribute("custom texture hi", item, botitem, true)
+					CopyAttribute("item style override", item, botitem, true)
 				end
 			end
 		end
@@ -393,14 +375,7 @@ function MimicPlayers()
 		
 		bot:Suicide()
 	end
-	for i = supportbotcount + 1, 3 do
-		local botname = "support" .. i
-		local bot = ents.FindByName(botname)
-		--print("removed " .. botname)
-		
-		bot:Suicide()
-	end
-
+	
 	return bots
 end
 
@@ -438,24 +413,6 @@ function CopyPrimary(bot, copyfromwep)
 	--CopyAttribute("mad milk syringes", copyfromwep, copytowep)
 	
 	--aussie bluts
-	CopyAttribute("item style override", copyfromwep, copytowep, true)
-	CopyAttribute("is australium item", copyfromwep, copytowep, true)
-	
-	CopyGeneric(copyfromwep, copytowep)
-end
-
---these are adjustable
-function CopySecondary(bot, copyfromwep)
-	local copytowep = bot:GiveItem(copyfromwep:GetItemName())
-	copytowep.m_flChargeLevel = 100 --max uber here
-
-	--CopyAttribute("ubercharge rate bonus", copyfromwep, copytowep)
-	--CopyAttribute("uber duration bonus", copyfromwep, copytowep)
-	--CopyAttribute("canteen specialist", copyfromwep, copytowep)
-	--CopyAttribute("overheal expert", copyfromwep, copytowep) --this may suck
-	--CopyAttribute("healing mastery", copyfromwep, copytowep)
-	
-	--aussie medi
 	CopyAttribute("item style override", copyfromwep, copytowep, true)
 	CopyAttribute("is australium item", copyfromwep, copytowep, true)
 	
@@ -503,12 +460,6 @@ function OnWaveSpawnBot(bot, _, tags)
 		bot:SetName("attack5")
 	elseif FindTag(tags, "attack6") then
 		bot:SetName("attack6")
-	elseif FindTag(tags, "support1") then
-		bot:SetName("support1")
-	elseif FindTag(tags, "support2") then
-		bot:SetName("support2")
-	elseif FindTag(tags, "support3") then
-		bot:SetName("support3")
 	end
 end
 
@@ -536,7 +487,11 @@ function Phase1()
 		
 		timer.Simple(1, function()
 			for _, datatable in pairs(players) do
-				datatable.entity:Teleport(roof_player_warp:GetAbsOrigin(), roof_player_warp:GetAbsAngles())
+				local player = datatable.entity
+				if player:InCond(TF_COND_HALLOWEEN_GHOST_MODE) == 1 or player:IsAlive() == false then
+					player:ForceRespawn()
+				end
+				player:Teleport(roof_player_warp:GetAbsOrigin(), roof_player_warp:GetAbsAngles())
 			end
 		end)		
 	end)
