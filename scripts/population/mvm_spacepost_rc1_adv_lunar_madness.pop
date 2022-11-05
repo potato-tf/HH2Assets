@@ -11,7 +11,8 @@ WaveSchedule
 	EventPopfile Halloween
 	ForceHoliday 2
 	ZombiesNoWave666 1
-
+	TextPrintTime 0
+	
 	ExtraSpawnPoint    
 	{
 		Name "spawnbot_intele" 
@@ -20,6 +21,12 @@ WaveSchedule
 		Y	"1754"                  
 		Z	"-430"   	
 	}
+	
+	FlagResetTime   //Overrides default bomb reset time
+    {
+        Name "intel" //Name of flag entity on the map
+        ResetTime 45
+    }
 	
 	PointTemplates
 	{
@@ -260,6 +267,13 @@ WaveSchedule
 				"health" "10"
 				"radius" "20"
 				"spawnflags" "17"
+			}
+			
+		    logic_relay
+			{
+			    "targetname" "boss_music_disabler"
+				"OnTrigger" "boss_music,StopSound,,0,-1"
+				"OnTrigger" "boss_music,Kill,,1,-1"
 			}
 		}
 		spooky_madness
@@ -815,7 +829,13 @@ WaveSchedule
 	}
 	
 	Wave	//700 credits 800 bonus
-	{
+	{	
+		InitWaveOutput
+		{
+		  Target boss_music
+		  Action Trigger
+		}
+		
 		StartWaveOutput
 		{
 			Target	wave_start_relay
@@ -827,7 +847,7 @@ WaveSchedule
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		
+
 		WaveSpawn
 		{
 			Name	wave1a
@@ -1443,7 +1463,7 @@ WaveSchedule
 				TFBot
 				{
 					Class	Heavy
-					Skill	Hard
+					Skill	Normal
 				}
 			}	
 		}
@@ -1464,7 +1484,6 @@ WaveSchedule
 			TFBot
 			{
 				Class	Soldier
-				Attributes	AlwaysCrit
 			}	
 		}		
 		
@@ -1630,7 +1649,7 @@ WaveSchedule
 				ClassIcon	scout_stun_giant_armored
 				Name	"Major Moon Shot"
 				Skill	Hard
-				Health	"21015"
+				Health	"16515"
 				Item	"The Sandman"	
 				Item	"Batter's Helmet"
 				Attributes 	MiniBoss
@@ -1641,9 +1660,9 @@ WaveSchedule
 				{
 					ItemName	"The Sandman"
 					"effect bar recharge rate increased"	0.001
-					"dmg bonus vs buildings" 3
-					"dmg penalty vs players" 3
-					"maxammo grenades1 increased" 100
+					"dmg bonus vs buildings" 2
+					"dmg penalty vs players" 2
+					"maxammo grenades1 increased" 25
 				}	
 				
 				CharacterAttributes
@@ -1651,11 +1670,10 @@ WaveSchedule
 					"boots falling stomp" 1
 					"increased jump height" 1.5
 					"cancel falling damage" 1
-					"health regen"    100
 					"move speed penalty"    0.4
-					"damage force reduction" 0.1
+					"damage force reduction" 0.3
 					"airblast vertical vulnerability multiplier" 0.1
-					"airblast vulnerability multiplier" 0.01
+					"airblast vulnerability multiplier" 0.1
 					"override footstep sound set" 5
 				}
 			}
@@ -1834,7 +1852,6 @@ WaveSchedule
 			TFBot
 			{
 				Template	T_TFBot_Giant_Heavyweapons_Deflector
-				Attributes	AlwaysCrit
 			}
 		}		
 		
@@ -1990,7 +2007,6 @@ WaveSchedule
 			WaitBeforeStarting	3
 			WaitBetweenSpawns	0
 			Where	spawnbot_boss
-			FirstSpawnWarningSound "AstrumDeus.mp3"
 			FirstSpawnMessage	"{Green} Song Name: Pest of The Cosmos by DM DOKURO"
 			
 			TFBot
@@ -2079,35 +2095,37 @@ WaveSchedule
 			}		
 		}	
 		
+        WaveSpawn
+        {
+            
+            Name    wave6a-1
+            WaitForAllDead    wave6a
+            TotalCurrency 50
+            TotalCount    1
+            MaxActive    1
+            SpawnCount    1
+            WaitBeforeStarting    3
+            WaitBetweenSpawns    0
+            Where    spawnbot_intele
+            FirstSpawnWarningSound "vo\mvm\norm\demoman_mvm_laughevil01.mp3"
+            HideIcon 1
+            
+            TFBot
+            {
+                Template    T_TFBot_Boss_Astrum_Deus_Phase2    
+                Attributes    AlwaysCrit
+            }    
+        }
+		
 		WaveSpawn
 		{
+		    Name wave6a-2
+            WaitForAllDead    wave6a-1
 			
-			Name	wave6a-1
-			WaitForAllDead	wave6a
-			TotalCurrency 50
-			TotalCount	1
-			MaxActive	1
-			SpawnCount	1
-			WaitBeforeStarting	3
-			WaitBetweenSpawns	0
-			Where	spawnbot_intele
-			FirstSpawnWarningSound "vo\mvm\norm\demoman_mvm_laughevil01.mp3"
-			HideIcon 1
-			
-			TFBot
-			{
-				Template	T_TFBot_Boss_Astrum_Deus_Phase2	
-				Attributes	AlwaysCrit
-			}	
-		}	
-		WaveSpawn
-		{
-			Name "Boss Music Yeeter"
-			WaitForAllDead "wave6a-1"
 			FirstSpawnOutput
 			{
-				Target boss_music
-				Action StopSound
+			    Target boss_music_disabler
+				Action Trigger
 			}
 		}
 		
