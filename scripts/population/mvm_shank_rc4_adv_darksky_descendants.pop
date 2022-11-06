@@ -48,7 +48,7 @@ Waveschedule
         Y "-18.6286"
     }
 
-    SpellBookNormalRoll   
+    SpellBookNormalRoll [$SIGSEGV] 
 	{
 		"Fireball" 2
 		"Healing Aura" 1
@@ -58,7 +58,7 @@ Waveschedule
 		"Teleport" 2
 	}
 
-    SpellBookRareRoll   
+    SpellBookRareRoll [$SIGSEGV] 
 	{
 		"Meteor Shower" 1
 		"Summon Monoculus" 1
@@ -324,8 +324,8 @@ Waveschedule
 			Attributes MiniBoss
             RocketCustomParticle eyeboss_projectile
             RocketCustomModel "models/props_halloween/eyeball_projectile.mdl"
-            AddCond   { Name TF_COND_SODAPOPPER_HYPE } 
-            HomingRockets  
+            AddCond [$SIGSEGV] { Name TF_COND_SODAPOPPER_HYPE } 
+            HomingRockets [$SIGSEGV]
 			{
                 Enable 1
 				IgnoreDisguisedSpies 1
@@ -484,7 +484,7 @@ Waveschedule
             Item "The Dragon's Fury"
             Item "Special Eyes"
             Item "the flare gun"
-            UseBestWeapon 1  
+            UseBestWeapon 1 [$SIGSEGV]
             ItemAttributes
             {
                 Itemname "The Dragon's Fury"
@@ -800,7 +800,7 @@ Waveschedule
                 TFBot
                 {
                     Template T_TFBot_Shield_Medic
-                    FireWeapon   // we do a little
+                    FireWeapon [$SIGSEGV] // we do a little
                     {
                         Type "Special"
                         Delay 2
@@ -1009,7 +1009,7 @@ Waveschedule
             TFBot
             {
                 Class Heavyweapons
-                Skill Easy // Slight Nerf
+                Skill Easy // Slight nerf
             }
         }
         WaveSpawn // heavy
@@ -1025,7 +1025,7 @@ Waveschedule
             TFBot
             {
                 Class Heavyweapons
-                Skill Easy // Slight Nerf
+                Skill Easy // Slight nerf
             }
         }
         WaveSpawn // Pyro
@@ -1288,7 +1288,7 @@ Waveschedule
                     //Classicon pyro_axtinguisher
                     Item "The Axtinguisher"
                     Item "Basic Spellbook"
-                    Spell  
+                    Spell [$SIGSEGV]
                     {
                         Cooldown 15
                         Repeats 0 
@@ -1297,7 +1297,7 @@ Waveschedule
                         Delay 0
                         Type "Fireball" 
                     }
-                    FireWeapon    //Periodically fires weapon
+                    FireWeapon [$SIGSEGV]  //Periodically fires weapon
                     {
                         Delay 0.1 
                         Cooldown 0.1 
@@ -1314,7 +1314,7 @@ Waveschedule
                     //Classicon pyro_axtinguisher
                     Item "The Axtinguisher"
                     Item "Basic Spellbook"
-                    Spell  
+                    Spell [$SIGSEGV]
                     {
                         Cooldown 12
                         Repeats 0 
@@ -1323,7 +1323,7 @@ Waveschedule
                         Limit 1 
                         Type "Fireball" 
                     }
-                    FireWeapon    //Periodically fires weapon
+                    FireWeapon [$SIGSEGV]  //Periodically fires weapon
                     {
                         Delay 0.1 
                         Cooldown 0.1 
@@ -1340,7 +1340,7 @@ Waveschedule
                     //Classicon pyro_axtinguisher
                     Item "The Axtinguisher"
                     Item "Basic Spellbook"
-                    Spell  
+                    Spell [$SIGSEGV]
                     {
                         Cooldown 19
                         Repeats 0 
@@ -1349,7 +1349,7 @@ Waveschedule
                         Limit 1 
                         Type "Fireball" 
                     }
-                    FireWeapon    //Periodically fires weapon
+                    FireWeapon [$SIGSEGV]  //Periodically fires weapon
                     {
                         Delay 0.1 
                         Cooldown 0.1 
@@ -1420,7 +1420,7 @@ Waveschedule
                 Template T_TFBot_Pyro_Phlog_fix
                 Attributes AlwaysCrit
                 Item "Basic Spellbook"
-                Spell  
+                Spell [$SIGSEGV]
                 {
                     Cooldown 20
                     Delay 2 //0.1
@@ -1429,7 +1429,7 @@ Waveschedule
                     Limit 1 
                     Type "Healing Aura"
                 }
-                FireWeapon    //Periodically fires weapon
+                FireWeapon [$SIGSEGV]  //Periodically fires weapon
                 {
                     Delay 0.1 
                     Cooldown 0.1 
@@ -1504,7 +1504,7 @@ Waveschedule
                 TFBot
                 {
                     Template T_TFBot_Demoman_Stickybomb_Vanilla
-                    Classicon demo 
+                    Classicon demo
                 }
             }
         }
@@ -1661,7 +1661,7 @@ Waveschedule
                     "override footstep sound set" 3 
                 }	
                 Item "Basic Spellbook"
-                Spell   // actually this spell is fine now
+                Spell [$SIGSEGV] // actually this spell is fine now
                 {
                     Cooldown 20
                     Delay 10
@@ -1670,7 +1670,7 @@ Waveschedule
                     Limit 1 
                     Type "Pumpkin MIRV"
                 }
-                FireWeapon    //Periodically fires weapon
+                FireWeapon [$SIGSEGV]  //Periodically fires weapon
                 {
                     Delay 0.1 
                     Cooldown 0.1 
@@ -1718,7 +1718,7 @@ Waveschedule
                 Item "The Dragon's Fury"
                 Skill Hard
                 UseHumanAnimations 1
-                AimTrackingInterval 0.25   // Normal aimtracking but kept skill hard to use the jetpack more often
+                AimTrackingInterval 0.25 [$SIGSEGV] // Normal aimtracking but kept skill hard to use the jetpack more often
                 ItemAttributes
                 {
                     Itemname "The Dragon's Fury"
@@ -1769,7 +1769,7 @@ Waveschedule
                     Template T_TFBot_Giant_Pyro_Flareburst
                     //ClassIcon pyro_flare_rain_homing_nys // temporary icon
                     // There is no pyro_flare_burst_homing_icon >:(
-                    //AddCond   { Name TF_COND_SODAPOPPER_HYPE } 
+                    //AddCond [$SIGSEGV] { Name TF_COND_SODAPOPPER_HYPE } 
                     //ItemAttributes
                     //{
                     //    ItemName "The Flare Gun"
@@ -1866,8 +1866,8 @@ Waveschedule
             WaitBetweenSpawns 0
             TotalCurrency 0
         
-            FirstSpawnWarningSound "sound\misc\halloween\merasmus_appear.wav"
-            DoneWarningSound "sound\misc\halloween\merasmus_disappear.wav"
+            FirstSpawnWarningSound "misc\halloween\merasmus_appear.wav"
+            DoneWarningSound "misc\halloween\merasmus_disappear.wav"
             TFBot 
             {
                 Name "Ticking Timebomb"
@@ -1887,7 +1887,7 @@ Waveschedule
                 Item "Upgradeable TF_WEAPON_GRENADELAUNCHER"
                 Item "The Hood of Sorrows"
 
-                AddCond   { Name TF_COND_SODAPOPPER_HYPE } 
+                AddCond [$SIGSEGV] { Name TF_COND_SODAPOPPER_HYPE } 
                 Action mobber
                 ItemAttributes
                 {
