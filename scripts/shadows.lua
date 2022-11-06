@@ -1,6 +1,31 @@
 -- the stuff below is made by Royal
 -- they deserve a LOT of kudos for everything here
 
+local deathCounts = {}
+local waveActive = false
+
+function OnPlayerConnected(player)
+	local handle = player:GetHandleIndex()
+
+	deathCounts[handle] = 0
+
+	player:AddCallback(ON_DEATH, function()
+		deathCounts[handle] = deathCounts[handle] + 1
+	end)
+end
+
+function OnPlayerDisconnected(player)
+	deathCounts[player:GetHandleIndex()] = nil
+end
+
+function OnWaveInit()
+	waveActive = false
+end
+
+function OnWaveStart()
+	waveActive = true
+end
+
 function rejuvenatorHit(damage, activator, caller)
 	local damageThreshold = 1
 
@@ -146,8 +171,11 @@ function playertracker(_, activator) -- the only thing here made by Sntr
 	end
 	
 	local function DeathCounter()
+		if not waveActive then
+			return
+		end
 
-		local deathcount = activator.m_iDeaths
+		local deathcount = 	deathCounts[activator:GetHandleIndex()]
 	
 		if deathcount >= 3 and deathcount < 4
 		then
@@ -167,14 +195,25 @@ function playertracker(_, activator) -- the only thing here made by Sntr
 	end
 	
 	callbacks.damagetype = activator:AddCallback(ON_DAMAGE_RECEIVED_PRE, function(_, damageInfo)
+		if activator:InCond(5) == 1 then
+			return
+		end
+
+		-- disallow friendly fire, allow self damage
+		if damageInfo.Attacker:GetHandleIndex() ~= activator:GetHandleIndex() then
+			if damageInfo.Attacker.m_iTeamNum == activator.m_iTeamNum then
+				return
+			end
+		end
 
 		local damage = damageInfo.Damage
 		local curHealth = activator.m_iHealth
 				
-		if damage > curHealth and activator:InCond(70) == 1 then --  give full heal + uber when condition 70 is removed
+		if damage > curHealth and activator:InCond(129) == 1 then --  give full heal + uber when condition 70 is removed
 			activator:AddCond(5,2.5)
 			activator:AddHealth(300,1)
 			activator:PlaySoundtoSelf("misc/halloween/merasmus_stun.wav")
+			activator:RemoveCond(129)
 			activator:RemoveCond(70) -- so people can't be undying forever
 		end
 	end)

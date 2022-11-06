@@ -3,6 +3,7 @@
 //Map: Skeleclipse
 //Map Maker: Bazooks
 //Uses rafmod
+//V8 (no buff)
 
 //
 // Starting Currency: 3000
@@ -202,14 +203,15 @@ WaveSchedule
 			Attributes SpawnWithFullCharge
 			WeaponRestrictions SecondaryOnly
 			Item "The Gas Passer"
+			Item "The Degreaser"
 			Item "The Person in the Iron Mask"
 
 			ItemAttributes
 			{
 				ItemName "The Gas Passer"
-				"item_meter_charge_rate" 0.5
-				"fire rate penalty" 3
-				"weapon burn dmg increased" 3
+				"mult_item_meter_charge_rate" 0.04
+				"weapon burn dmg increased" 3 
+				"airblast_destroy_projectile" 1
 			}
 			CharacterAttributes
 			{
@@ -652,7 +654,7 @@ WaveSchedule
 			Class Pyro
 			Name "Noob Pyro"
 			ClassIcon pyro_gascann_explode_giant
-			Skill Expert
+			Skill Easy
 			Attributes SpawnWithFullCharge
 			Attributes MiniBoss
 			WeaponRestrictions SecondaryOnly
@@ -671,8 +673,7 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName "The Gas Passer"
-				"item_meter_charge_rate" 5
-				"fire rate penalty" 3
+				"mult_item_meter_charge_rate" 0.05
 				"explode_on_ignite" 1
 			}
 			CharacterAttributes 
@@ -683,7 +684,7 @@ WaveSchedule
 				"dmg taken from blast reduced" 0.25
 				"dmg taken from bullets reduced" 0.25
 			}
-			weaponresist  
+			weaponresist [$SIGSEGV]
 			{
             	"tf_weapon_knife" 0.2
 			}
@@ -701,7 +702,7 @@ WaveSchedule
 			Item "Upgradeable TF_WEAPON_MINIGUN"
 			Item "The Trash Man"
 			Item "Battery Canteens"
-			ExtAttr SuppressCanteenUse  
+			ExtAttr SuppressCanteenUse [$SIGSEGV]
 			NoIdleSound 1
 			ItemAttributes
 			{
@@ -726,7 +727,7 @@ WaveSchedule
                 "powerup duration" 5
                 "powerup charges" 1
             }
-			FireWeapon  
+			FireWeapon [$SIGSEGV]
             {
                 IfHealthBelow 150
                 Delay 0
@@ -736,7 +737,7 @@ WaveSchedule
                 Duration 0.1
                 Type "Action"
             }
-			FireWeapon  
+			FireWeapon [$SIGSEGV]
             {
                 IfHealthBelow 100
                 Delay 0
@@ -746,7 +747,7 @@ WaveSchedule
                 Duration 0.1
                 Type "Action"
             }
-			weaponresist  
+			weaponresist [$SIGSEGV]
 			{
             	"tf_weapon_knife" 0.2
 			}
@@ -798,7 +799,7 @@ WaveSchedule
                 "powerup duration" 5
                 "powerup charges" 3
             }
-			weaponresist  
+			weaponresist [$SIGSEGV]
 			{
             	"tf_weapon_knife" 0.2
 			}
@@ -811,7 +812,7 @@ WaveSchedule
 			Scale 1
 			//Health 800
 			ClassIcon scout_giant
-			Name "Upgrades their Gun"
+			Name "Non Idle Scout"
 			WeaponRestrictions PrimaryOnly
 			Item "The Soda Popper"
 			Attributes MiniBoss
@@ -832,10 +833,13 @@ WaveSchedule
 			{
 				"increased jump height" 1.6
 				"move speed bonus"	1
+				"dmg taken from fire reduced" 0.25
 				"dmg taken from crit reduced" 0.1
+				"dmg taken from blast reduced" 0.25
+				"dmg taken from bullets reduced" 0.25
 				
 			}
-			weaponresist  
+			weaponresist [$SIGSEGV]
 			{
             	"tf_weapon_knife" 0.6
 			}
@@ -875,7 +879,7 @@ WaveSchedule
 				"dmg taken from blast reduced" 0.25
 				"dmg taken from bullets reduced" 0.25
 			}
-			weaponresist  
+			weaponresist [$SIGSEGV]
 			{
             	"tf_weapon_knife" 0.2
 			}
@@ -884,7 +888,7 @@ WaveSchedule
 		T_TFBot_Giant_Medic_Player
 		{
 			Class Medic
-			Name "Medic Girlfriend"
+			Name "Non Idle Med"
 			ClassIcon medic_kritz_giant
 			Skill Expert
 			Scale 1
@@ -922,13 +926,14 @@ WaveSchedule
 				"dmg taken from blast reduced" 0.25
 				"dmg taken from bullets reduced" 0.25
 			}
-			weaponresist  
+			weaponresist [$SIGSEGV]
 			{
             	"tf_weapon_knife" 0.2
 			}
-			FireWeapon  
+			FireWeapon [$SIGSEGV]
 			{	
-				Delay 20
+				IfSeeTarget 1
+				Delay 11
 				Type "Special"
 			}
 		}
@@ -1270,7 +1275,7 @@ WaveSchedule
 		//////////////////////////
 		//			W1D			//
 		//////////////////////////
-		WaveSpawn //12k tank ($250)
+		WaveSpawn //11k tank ($250)
 		{
 			TotalCurrency 250
 			Name "w1d_tank"
@@ -1280,7 +1285,7 @@ WaveSchedule
 
 			Tank
 			{
-				Health 10000
+				Health 11000
 				Speed 75
 				Name "tankboss"
 				StartingPathTrackNode "boss_path_middle_1"
@@ -1298,16 +1303,16 @@ WaveSchedule
 			}
 		}
 
-		WaveSpawn //6 g burst fire ($200)
+		WaveSpawn //4 g burst fire ($200)
 		{
 			TotalCurrency 200
 			Name "w1d_gburst_soldier"
 			
 			Where spawnbot_topflank
-			TotalCount 6
+			TotalCount 4
 			SpawnCount 1
-			MaxActive 6
-			WaitBetweenSpawns 5
+			MaxActive 4
+			WaitBetweenSpawns 7
 			WaitBeforeStarting 0
 			WaitForAllDead "w1c_conch"
 			
@@ -2556,7 +2561,7 @@ WaveSchedule
 			
 			TotalCount 1
 			WaitForAllSpawned "w3e_gbrass+kritz"
-			WaitBeforeStarting 10
+			WaitBeforeStarting 8
 
 			Tank
 			{

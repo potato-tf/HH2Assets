@@ -48,12 +48,11 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"damage bonus HIDDEN" 0.2
-				"Blast radius decreased" -0.2
+				"damage bonus HIDDEN" 0.25
 				"dmg pierces resists absorbs" 1
 				"clip size penalty HIDDEN" -0.25
 			}
-			Description "+20% damage bonus +20% damage to tanks +Attacks pierce damage resistances -20% smaller blast radius -25% clip size" 
+			Description "+20% damage bonus +20% damage to tanks +Attacks pierce damage resistances -25% clip size" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -212,11 +211,11 @@ WaveSchedule
 			Cap 5
 			Increment 5
 			Cost 0
-			Description "+On Kill: 5 seconds of mini-crits +25% damage bonus" 
+			Description "+On Kill: 5 seconds of mini-crits +35% damage bonus" 
 			Tier 1
 			SecondaryAttributes
 			{
-				"damage bonus" 0.25
+				"damage bonus" 0.35
 			}
             Allowplayerclass Engineer
             Allowplayerclass Heavyweapons
@@ -242,15 +241,15 @@ WaveSchedule
 		{
 			Name "Stable Mod: Bot Basher"
 			Attribute "damage bonus"
-			Cap 1.2
-			Increment 0.2
+			Cap 1.5
+			Increment 0.5
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"increase buff duration" 0.5
 				"provide on active" 1
 			}
-			Description "(i)When active: +20% damage bonus +50% buff duration" 
+			Description "(i)When active: +50% damage bonus +50% buff duration" 
 			Tier 1
             Allowplayerclass Soldier
 			AllowedWeapons
@@ -272,9 +271,9 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"mult credit collect range" 1
+				"mult credit collect range" 1.5
 			}
-			Description "+increased cash collection radius and +100% melee range" 
+			Description "+increased cash collection radius and +150% melee range" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -290,7 +289,7 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"mult dmg vs giants" 0.5
+				"mult dmg vs giants" 1.0
 			}
 			Description "+Damages all enemies connected via medi-beam +50% damage to giant robots" 
 			Tier 1

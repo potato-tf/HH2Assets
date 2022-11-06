@@ -137,7 +137,7 @@ WaveSchedule
 				"self dmg push force decreased" -3
 				"blast dmg to self increased" 0.50
 			}
-			Description "+Grenade is not destroyed on hit + no self-knockback -50% self damage vulnerability" 
+			Description "+Grenade is not destroyed on hit + no self-knockback -Self Damage increased by 50%" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -189,7 +189,6 @@ WaveSchedule
 				ItemName "The Persian Persuader"
 				ItemName "The Half-Zatoichi"
 				ItemName "The Cloak and Dagger"
-				ItemName "The Dead Ringer"
 				ItemName "Rocket Jumper"
 			}
 		}

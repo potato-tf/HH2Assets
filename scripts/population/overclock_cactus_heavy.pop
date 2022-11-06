@@ -97,6 +97,7 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes
 			{
+				"provide on active" 1
 				"gesture speed increase" 1.75
 			}
 			Description "Consume Steak faster and effect now also gives conch effect" 

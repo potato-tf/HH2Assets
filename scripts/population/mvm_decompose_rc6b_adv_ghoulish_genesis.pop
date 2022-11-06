@@ -8,7 +8,6 @@
 #base overclock_cactus_heavy.pop
 #base overclock_cactus_engineer.pop
 #base overclock_cactus_medic.pop
-
 population
 {
 	StartingCurrency	3000
@@ -541,7 +540,7 @@ population
 	                }
 			Tank
 			{
-				Health	20000
+				Health	25000
 				Name	Tank
 				Speed	75
 				StartingPathTrackNode	sdtank_path_a_1
@@ -653,9 +652,10 @@ population
 				TFBot
 				{
                         	ClassIcon uber_quickfix_medic_nys
-			       		Template	T_TFBot_Medic
-                                	Tag bot_squad_member
-                        	}
+                              	        Name "Big-heal Medic"
+					Template	T_TFBot_Medic_BigHeal	
+					Tag bot_squad_member
+				}
 			}
 		}
 		WaveSpawn
@@ -835,7 +835,7 @@ population
 	                }
 			Tank
 			{
-				Health	30000
+				Health	35000
 				Name	Tank
 				Speed	75
 				StartingPathTrackNode	sdtank_path_a_1
@@ -959,9 +959,9 @@ population
 			Name	7
 			WaitForAllDead	6
 			TotalCurrency	200
-			TotalCount	12
-			MaxActive	9
-			SpawnCount	3
+			TotalCount	8
+			MaxActive	6
+			SpawnCount	2
 			Where spawnbot_1
 			Where spawnbot_2
 			WaitBeforeStarting	0
@@ -1046,13 +1046,6 @@ population
 					Template	T_TFBot_Medic_QuickUber
                                         Tag bot_squad_member
 				}
-				TFBot
-				{
-                                ClassIcon uber_quickfix_medic_nys
-                                        Name "Quick Uber Medic"
-					Template	T_TFBot_Medic_QuickUber
-                                        Tag bot_squad_member
-				}
 			}
 		}
 		WaveSpawn
@@ -1089,7 +1082,7 @@ population
 			Where flankers_1
 			Where flankers_2
 			WaitBeforeStarting	15
-			WaitBetweenSpawns	3
+			WaitBetweenSpawns	4
 			TFBot
 			{
                         ClassIcon soldier
@@ -1105,7 +1098,7 @@ population
 						Tag bot_gatebot 				
 
 						Item "MvM GateBot Light Soldier"
-						Skill Hard
+						Skill Normal
 					}
 					RevertGateBotsBehavior
 					{
@@ -1115,7 +1108,7 @@ population
 							ItemName "MvM GateBot Light Soldier"
 							"item style override" 1
 						}
-						Skill Hard
+						Skill Normal
 					}
 				}
 			}
@@ -1198,13 +1191,13 @@ population
 			Name	8
 			WaitForAllDead	7
 			TotalCurrency	50
-			TotalCount	24
-			MaxActive	8
-			SpawnCount	2
+			TotalCount	18
+			MaxActive	6
+			SpawnCount	3
 			Where flankers_1
 			Where flankers_2
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	3
 			TFBot
 			{
                         	Class Demoman
@@ -1261,7 +1254,8 @@ population
 				}
 				TFBot
 				{
-					Template	T_TFBot_Giant_Medic
+				        Name "Giant Regen Medic"
+					Template	T_TFBot_Giant_Medic_Regen
                                         Tag bot_giant
                                         Tag bot_squad_member
 				}
@@ -1278,7 +1272,7 @@ population
 			Where spawnbot_1
 			Where spawnbot_2
 			WaitBeforeStarting	12
-			WaitBetweenSpawns	1
+			WaitBetweenSpawns	2
 			TFBot
 			{
                         ClassIcon soldier
@@ -1300,7 +1294,7 @@ population
 			Where flankers_1
 			Where flankers_2
 			WaitBeforeStarting	15
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	3
 			TFBot
 			{
 				ClassIcon scout
@@ -1975,7 +1969,7 @@ population
 			}
 			Tank
 			{
-				Health	35000
+				Health	40000
 				Speed 75
                                 Skin 1
 				Name Tank
