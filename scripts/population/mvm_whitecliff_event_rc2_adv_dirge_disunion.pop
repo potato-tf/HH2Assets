@@ -11,15 +11,15 @@ population
 	FixedRespawnWaveTime			Yes
 	Advanced						1
 	// Rafmod cvars
-	BodyPartScaleSpeed		50	[$SIGSEGV]
-	FixSetCustomModelInput	1	[$SIGSEGV]
-	MaxSpectators			2	[$SIGSEGV]
-	NoCritPumpkin			1	[$SIGSEGV]
-	NoRomevisionCosmetics	1	[$SIGSEGV]
-	NoThrillerTaunt			1	[$SIGSEGV]
-	RobotLimit				24	[$SIGSEGV]
-	TextPrintTime			0	[$SIGSEGV]
-	UpgradeStationKeepWeapons 1
+	BodyPartScaleSpeed			50	[$SIGSEGV]
+	FixSetCustomModelInput		1	[$SIGSEGV]
+	MaxSpectators				2	[$SIGSEGV]
+	NoCritPumpkin				1	[$SIGSEGV]
+	NoRomevisionCosmetics		1	[$SIGSEGV]
+	NoThrillerTaunt				1	[$SIGSEGV]
+	RobotLimit					24	[$SIGSEGV]
+	TextPrintTime				0	[$SIGSEGV]
+	UpgradeStationKeepWeapons	1	[$SIGSEGV]
 	// Model precache
 	PrecacheModel	"models\weapons\c_models\c_entrenched_gun\c_scattergun.mdl"	[$SIGSEGV]
 	PrecacheModel	"models\workshop\weapons\c_models\c_hornetsnest\c_atom_launcher.mdl"	[$SIGSEGV]
@@ -367,7 +367,7 @@ population
 			Name "Stab Vest"
 			Description "Increases resistance to melee damage by 20% per point."
 			PlayerUpgrade 1
-			Cost 200
+			Cost 150
 			Attribute "mult dmgtaken from melee"
 			Increment -0.2
 			Cap 0.4
@@ -782,6 +782,25 @@ population
 			Increment 1
 			Cap 1
 		}
+		UberOnHit	// medic - all bonesaws grant uber on hit
+		{
+			Name "Ubercharge Siphons"
+			Description "All of Medic's non-Ubersaw melee weapons grant 15% Ubercharge on hit."
+			AllowPlayerClass Medic
+			AllowedWeapons
+			{
+				Slot	"Melee"
+			}
+			DisallowedWeapons
+			{
+                ItemName	"The Ubersaw"
+                ItemName	"Festive Ubersaw"
+			}
+			Cost 200
+			Attribute "add uber charge on hit"
+			Increment 0.15
+			Cap 0.15
+		}
 		DamageConnected	// sniper - add damage all connected via healing beams to bows and increase sniper max health
 		{
 			Name "Electrified Arrows"
@@ -843,10 +862,35 @@ population
 			{
 				Slot	"Secondary"
 			}
+			DisallowedWeapons
+			{
+				ItemName	"The Enforcer"
+				ItemName	"The Diamondback"
+			}
 			Cost 500
 			Attribute "keep disguise on attack"
 			Increment 1
 			Cap 1
+		}
+		KeepDisguiseStrong	// spy - enforcer/diamondback attacks do not break disguises but lower clip size and firing speed
+		{
+			Name "Noise Dampeners"
+			Description "Firing the Enforcer or Diamondback does not break your disguise, but clip size is reduced by 50% and firing speed is reduced by 35%."
+			AllowPlayerClass Spy
+			AllowedWeapons
+			{
+				ItemName	"The Enforcer"
+				ItemName	"The Diamondback"
+			}
+			Cost 500
+			Attribute "keep disguise on attack"
+			Increment 1
+			Cap 1
+			SecondaryAttributes
+			{
+				"clip size penalty"			-0.5
+				"fire rate penalty HIDDEN"	-0.35
+			}
 		}
 		UberOnKill	// spy - ubercharge on kill
 		{

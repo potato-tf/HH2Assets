@@ -11,16 +11,16 @@ population
 	FixedRespawnWaveTime			Yes
 	Advanced						1
 	// Rafmod cvars
-	BodyPartScaleSpeed		50	[$SIGSEGV]
-	FixSetCustomModelInput	1	[$SIGSEGV]
-	MaxSpectators			2	[$SIGSEGV]
-	NoCritPumpkin			1	[$SIGSEGV]
-	NoRomevisionCosmetics	1	[$SIGSEGV]
-	NoThrillerTaunt			1	[$SIGSEGV]
-	RobotLimit				24	[$SIGSEGV]
-	SniperAllowHeadshots	1	[$SIGSEGV]
-	TextPrintTime			0	[$SIGSEGV]
-	UpgradeStationKeepWeapons 1
+	BodyPartScaleSpeed			50	[$SIGSEGV]
+	FixSetCustomModelInput		1	[$SIGSEGV]
+	MaxSpectators				2	[$SIGSEGV]
+	NoCritPumpkin				1	[$SIGSEGV]
+	NoRomevisionCosmetics		1	[$SIGSEGV]
+	NoThrillerTaunt				1	[$SIGSEGV]
+	RobotLimit					24	[$SIGSEGV]
+	SniperAllowHeadshots		1	[$SIGSEGV]
+	TextPrintTime				0	[$SIGSEGV]
+	UpgradeStationKeepWeapons	1	[$SIGSEGV]
 	// Model precache
 	PrecacheModel	"models\weapons\c_models\c_entrenched_gun\c_scattergun.mdl"	[$SIGSEGV]
 	PrecacheModel	"models\workshop\weapons\c_models\c_hornetsnest\c_atom_launcher.mdl"	[$SIGSEGV]
@@ -367,7 +367,7 @@ population
 	// Custom upgrades
 	ExtendedUpgrades	[$SIGSEGV]
 	{
-		NoFallDamage	// scout - fall damage immunity (approved)
+		NoFallDamage	// scout - fall damage immunity
 		{
 			Name "Long Fall Boots"
 			Description "Grants immunity to fall damage and 75% knockback resistance."
@@ -382,7 +382,7 @@ population
 				"damage force reduction"	-0.75
 			}
 		}
-		HealthGainedBonus	// scout - healing bonus from shortstop made passive (approved)
+		HealthGainedBonus	// scout - healing bonus from shortstop made passive
 		{
 			Name "Health Siphons"
 			Description "Increases health gained from all sources, including money piles, by 25%."
@@ -393,7 +393,7 @@ population
 			Increment 0.25
 			Cap 1.25
 		}
-		JarateBat	// scout - jarate bat for aoe mark (approved)
+		JarateBat	// scout - jarate bat for aoe mark
 		{
 			Name "Jarate-coated Bat"
 			Description "Scout's melee weapons apply Jarate to multiple enemies at a once for 8 seconds."
@@ -418,7 +418,7 @@ population
 				"melee bounds multiplier"	0.3
 			}
 		}
-		JarateBat	// scout - jarate bat for aoe mark - fan o'war version (approved)
+		JarateBat	// scout - jarate bat for aoe mark - fan o'war version
 		{
 			Name "Jarate-coated Bat"
 			Description "Scout's melee weapons apply Jarate to multiple enemies at a once for 8 seconds."
@@ -441,7 +441,7 @@ population
 				"damage penalty"			0.35
 			}
 		}
-		Charged	// soldier - make rocket launchers function like charged soldiers (approved)
+		Charged	// soldier - make rocket launchers function like charged soldiers
 		{
 			Name "Charged Module"
 			Description "Rocket Launchers become crit boosted but have reduced fire rate and projectile speed and reload slower."
@@ -513,7 +513,7 @@ population
 				"damage bonus vs burning"		0.2
 			}
 		}
-		MaxHealthBonus	// pyro - increase pyro max health (approved)
+		MaxHealthBonus	// pyro - increase pyro max health
 		{
 			Name "Kevlar-lined Suit"
 			Description "Increases Pyro's maximum health by 25 per point."
@@ -548,7 +548,7 @@ population
 				"mult airblast primary refire time"	-0.1
 			}
 		}
-		BurstFire	// demoman - make grenade launchers function like small burst fire demos (approved)
+		BurstFire	// demoman - make grenade launchers function like small burst fire demos
 		{
 			Name "Burst Fire Module"
 			Description "Grenade Launchers fire their entire clip at once and reload slower. Ineffective with Fire Rate."
@@ -575,7 +575,7 @@ population
 				"Reload time increased"				0.65
 			}
 		}
-		MeleeCleave	// demoman - add cleave to all sword type weapons (approved)
+		MeleeCleave	// demoman - add cleave to all sword type weapons
 		{
 			Name "Reinforced Blade"
 			Description	"Swords and axes can hit multiple enemies at once and have increased range."
@@ -601,7 +601,7 @@ population
 				"melee bounds multiplier"	0.3
 			}
 		}
-		TankBuster	// heavy - increased minigun damage vs tanks (approved)
+		TankBuster	// heavy - increased minigun damage vs tanks
 		{
 			Name "Anti-Tank Rounds"
 			Description "Minigun damage to Tanks is increased by 25% per point."
@@ -615,7 +615,7 @@ population
 			Increment 0.25
 			Cap 1.5
 		}
-		HeaterOverheat	// heavy - heater ignites enemies and ring of fire damage bonus (approved)
+		HeaterOverheat	// heavy - heater ignites enemies and ring of fire damage bonus
 		{
 			Name "Intense Heat"
 			Description "Huo-Long Heater's bullets can ignite enemies on hit and quadruples the ring of fire's damage."
@@ -634,7 +634,7 @@ population
 				"ring of fire while aiming"	36
 			}
 		}
-		MarkForDeath	// heavy - revert gru to pre-jungle inferno version (approved)
+		MarkForDeath	// heavy - revert gru to pre-jungle inferno version
 		{
 			Name "Rewind Time"
 			Description "Replaces the health drain of the Gloves of Running Urgently with self mark for death."
@@ -654,7 +654,7 @@ population
 				"mod_maxhealth_drain_rate"	-10
 			}
 		}
-		ShotgunDamage	// engineer - increase shotgun damage (approved)
+		ShotgunDamage	// engineer - increase shotgun damage
 		{
 			Name "Bigger Shells"
 			Description "Increases the damage of Engineer's primary weapons by 33% per point."
@@ -672,7 +672,7 @@ population
 			Increment 0.33
 			Cap 1.99
 		}
-		BuildingTele	// engineer - allow picking up buildings from any range for metal (approved)
+		BuildingTele	// engineer - allow picking up buildings from any range for metal
 		{
 			Name "Building Teleport Module"
 			Description "Engineer's primary weapons can pick up buildings from any range for 150 metal."
@@ -690,7 +690,7 @@ population
 			Increment 150
 			Cap 150
 		}
-		RangerNoMark	// engineer - increase rescue ranger healing and remove mark for death (approved)
+		RangerNoMark	// engineer - increase rescue ranger healing and remove mark for death
 		{
 			Name "Improved Bolts"
 			Description "Increases Rescue Ranger bolt healing by 33% and removes self mark while carrying buildings."
@@ -708,7 +708,7 @@ population
 				"mark for death on building pickup"	-1
 			}
 		}
-		BuildingMastery	// engineer - boost sentry range and damage, dispenser heal rate, teleporter recharge rate and speed boost (approved)
+		BuildingMastery	// engineer - boost sentry range and damage, dispenser heal rate, teleporter recharge rate and speed boost
 		{
 			Name "Building Mastery"
 			Description "Increases Sentry Gun damage and range, Dispenser heal rate, and Teleporter recharge rate."
@@ -730,7 +730,7 @@ population
 				"mult dispenser rate"			0.4
 			}
 		}
-		MadMilkCrossbow	// medic - mad milk crossbow bolts (approved)
+		MadMilkCrossbow	// medic - mad milk crossbow bolts
 		{
 			Name "Mad Milk Bolts"
 			Description "Crossbow bolts apply Mad Milk to targets for 4 seconds."
@@ -749,7 +749,7 @@ population
 				"add cond on hit"	27	// mad milk
 			}
 		}
-		LongerBeam	// medic - increase medi gun range (approved)
+		LongerBeam	// medic - increase medi gun range
 		{
 			Name "Longer Healing Beam"
 			Description "Medi Gun beam length increased by 25% per point."
@@ -763,7 +763,7 @@ population
 			Increment 0.25
 			Cap 2
 		}
-		RepairBeam	// medic - medi guns can heal buildings (approved)
+		RepairBeam	// medic - medi guns can heal buildings
 		{
 			Name "Repair Beam"
 			Description "Medi Guns can heal Engineer buildings."
@@ -777,7 +777,26 @@ population
 			Increment 4
 			Cap 4
 		}
-		DamageConnected	// sniper - add damage all connected via healing beams to bows and increase sniper max health (approved)
+		UberOnHit	// medic - all bonesaws grant uber on hit
+		{
+			Name "Ubercharge Siphons"
+			Description "All of Medic's non-Ubersaw melee weapons grant 15% Ubercharge on hit."
+			AllowPlayerClass Medic
+			AllowedWeapons
+			{
+				Slot	"Melee"
+			}
+			DisallowedWeapons
+			{
+                ItemName	"The Ubersaw"
+                ItemName	"Festive Ubersaw"
+			}
+			Cost 200
+			Attribute "add uber charge on hit"
+			Increment 0.15
+			Cap 0.15
+		}
+		DamageConnected	// sniper - add damage all connected via healing beams to bows and increase sniper max health
 		{
 			Name "Electrified Arrows"
 			Description "Increases Sniper's maximum health by 25 and arrows deal damage to enemies connected via healing beams."
@@ -797,7 +816,7 @@ population
 				"max health additive bonus"	25
 			}
 		}
-		SleeperSplash	// sniper - add jarate splash to sleeper headshots (approved)
+		SleeperSplash	// sniper - add jarate splash to sleeper headshots
 		{
 			Name "Pressurised Darts"
 			Description "Headshots with the Sydney Sleeper coat nearby enemies with Jarate."
@@ -811,7 +830,7 @@ population
 			Increment 1
 			Cap 1
 		}
-		RevolverDamage	// spy - increase revolver damage (approved)
+		RevolverDamage	// spy - increase revolver damage
 		{
 			Name "Large Calibre"
 			Description "Increases the damage of Spy's revolvers by 25% per point and increases Ambassador headshot damage by 15% per point."
@@ -829,7 +848,7 @@ population
 				"headshot damage increase"	0.15
 			}
 		}
-		KeepDisguise	// spy - revolver attacks do not break disguises (approved)
+		KeepDisguise	// spy - revolver attacks do not break disguises
 		{
 			Name "Noise Dampeners"
 			Description "Firing a revolver does not break your disguise."
@@ -838,10 +857,35 @@ population
 			{
 				Slot	"Secondary"
 			}
+			DisallowedWeapons
+			{
+				ItemName	"The Enforcer"
+				ItemName	"The Diamondback"
+			}
 			Cost 500
 			Attribute "keep disguise on attack"
 			Increment 1
 			Cap 1
+		}
+		KeepDisguiseStrong	// spy - enforcer/diamondback attacks do not break disguises but lower clip size and firing speed
+		{
+			Name "Noise Dampeners"
+			Description "Firing the Enforcer or Diamondback does not break your disguise, but clip size is reduced by 50% and firing speed is reduced by 35%."
+			AllowPlayerClass Spy
+			AllowedWeapons
+			{
+				ItemName	"The Enforcer"
+				ItemName	"The Diamondback"
+			}
+			Cost 500
+			Attribute "keep disguise on attack"
+			Increment 1
+			Cap 1
+			SecondaryAttributes
+			{
+				"clip size penalty"			-0.5
+				"fire rate penalty HIDDEN"	-0.35
+			}
 		}
 		UberOnKill	// spy - ubercharge on kill
 		{
@@ -1317,6 +1361,7 @@ population
 				"airblast vulnerability multiplier"	0.4
 				"override footstep sound set"		3
 			}
+			RocketCustomParticle "eyeboss_projectile" [$SIGSEGV]
 			AimAt Body [$SIGSEGV]
 		}
 		T_TFBot_Tind_Pyro // w1,2,5
