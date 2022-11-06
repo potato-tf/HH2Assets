@@ -127,7 +127,7 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"no primary ammo from dispensers while active" 1
+				"no metal from dispensers while active" 1
 			}
 			Description "(i)when active: +35% sentry damage bonus -90% less metal from packs and dispensers" 
 			Tier 1
