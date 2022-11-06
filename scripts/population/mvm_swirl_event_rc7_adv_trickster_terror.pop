@@ -64,12 +64,12 @@ bozo_mission_be_liek
     NoRomevisionCosmetics 1 // Dude fuck off
     //FixHuntsmanDamageBonus 0 // How about, no. 720 damage on headshot wtf
     NoCritPumpkin 1 
-	UpgradeStationKeepWeapons 1
     NoHolidayPickups 1
     BodyPartScaleSpeed 10
     FastNPCupdate 1
     NoSkeletonSplit 1
     WaveStartCountdown 5
+    UpgradeStationKeepWeapons 1
 
     // Disable Sounds
     DisableSound "Announcer.MVM_Get_To_Upgrade"
@@ -91,7 +91,7 @@ bozo_mission_be_liek
     PrecacheModel "models/player/items/all_class/gately_gibus_heavy.mdl"
     PrecacheModel "models/player/vatican/joker/spy.mdl"
     PrecacheModel "models/props_mvm/mvm_comically_small_player_shield.mdl" // What the fuck is this
-    PrecacheSound "trickster_terror_joker_laugh.mp3"
+    PrecacheSound "sound/trickster_terror_joker_laugh.mp3"
 
     OverrideSounds
 	{
@@ -167,7 +167,7 @@ bozo_mission_be_liek
 		Where spawnbot_sentrybuster
 		BeginAtWave	7
 		RunForThisManyWaves	1
-		InitialCooldown	25
+		InitialCooldown	15
 		CooldownTime 30
 		DesiredCount 1
 		TFBot
@@ -636,8 +636,8 @@ bozo_mission_be_liek
 			logic_relay // relay that disables damage to tanks named "ubertank"
 			{
 				"targetname" "tank_uber_on"
-				"OnTrigger" "matryoshka_tank2*,SetDamageFilter,filter_yes,0,-1"
-                "OnTrigger" "matryoshka_tank3*,SetDamageFilter,filter_yes,0,-1"
+				"OnTrigger" "matryoshka_tank2*,SetDamageFilter,filter_yes,0.1,-1"
+                "OnTrigger" "matryoshka_tank3*,SetDamageFilter,filter_yes_2,0.1,-1"
 			}
 			logic_relay // relay that enables damage to tanks named "ubertank"
 			{
@@ -656,6 +656,12 @@ bozo_mission_be_liek
 				"filtername" "absolutely"
 				"Negated" "0"
 				"targetname" "filter_yes"
+			}
+            filter_activator_name // Ecksdee
+			{
+				"filtername" "absolutely_2"
+				"Negated" "0"
+				"targetname" "filter_yes_2"
 			}
 		}
         Yakuza_Title_Card_Matryoshka // Permission Granted by Royal
@@ -896,7 +902,7 @@ bozo_mission_be_liek
 			Name "Giant Duck Soldier"
 			ClassIcon soldier_giant
 			Health 3800
-            Item "Duck Billed Hatypus"
+            //Item "Duck Billed Hatypus"
             Item "The Deadliest Duckling"
             //Item "Mr. Quackers" // This is cursed
             Item "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
@@ -1056,7 +1062,7 @@ bozo_mission_be_liek
                 Name "Giant Duck Soldier"
                 Item "The Deadliest Duckling"
                 Item "Duck Billed Hatypus"
-                ItemAttributes
+				ItemAttributes
 				{
 					ItemName "Duck Billed Hatypus"
 					"set item tint RGB" 5801378
@@ -1099,7 +1105,7 @@ bozo_mission_be_liek
                 Name "Jacked Up Pyro"
                 Skill Hard
                 WeaponRestrictions MeleeOnly
-                Attributes AlwaysCrit
+                //Attributes AlwaysCrit
                 UseCustomModel "models/player/pyro.mdl"
                 Skin 5
                 Item "Zombie Pyro"
@@ -1300,9 +1306,9 @@ bozo_mission_be_liek
                 {
                     Class Pyro
                     //ClassIcon pyro_backburner_nys
-                    Skill Hard
+                    Skill Easy
                     Name "Undead Pyromaniac"
-                    Attributes AlwaysFireWeapon
+                    //Attributes AlwaysFireWeapon
                     UseCustomModel "models/player/pyro.mdl"
                     Skin 5
                     Item "Zombie Pyro"
@@ -1858,7 +1864,7 @@ bozo_mission_be_liek
                 Item "The Diplomat"
                 Item "The Man in Slacks"
                 Item "The Colonial Clogs"
-                Item "Scotsman's Stove Pipe"
+                //Item "Scotsman's Stove Pipe"
                 Tag bot_giant
 
                 EventChangeAttributes
@@ -1870,7 +1876,7 @@ bozo_mission_be_liek
 					    Tag nav_prefer_gate1_flank 		// having these will cause bots to run towards gates
 					    Tag bot_gatebot 				// having these will cause bots to run towards gates
 
-                        Item "Scotsman's Stove Pipe"
+                        Item "Scotsman's Stove Pipe" // Doesn't work?
                         ItemAttributes
 					    {
 						    ItemName "Scotsman's Stove Pipe"
@@ -2069,7 +2075,7 @@ bozo_mission_be_liek
         WaveSpawn // GATEBOT shotgunners!!!
         {
             Name b2_3
-            WaitForAllDead b1_3
+            WaitForAllSpawned b1_3
             TotalCurrency 150
             TotalCount 20
             MaxActive 6
@@ -2355,7 +2361,7 @@ bozo_mission_be_liek
                 //ClassIcon scout
             }
         }
-        WaveSpawn // Armored Rattler Skeletons // Buff this mini-giant?
+        WaveSpawn // Armored Rattler Skeletons
         {  
             Name c1_3
             TotalCurrency 50
@@ -2375,6 +2381,7 @@ bozo_mission_be_liek
                 Skill Normal
                 Scale 1.4
                 Health 650
+                UseHumanAnimations 1 [$SIGSEGV]
                 WeaponRestrictions SecondaryOnly
                 UseCustomModel "models/bots/skeleton_sniper/skeleton_sniper.mdl"
                 DeathSound "misc/halloween/skeleton_break.wav"
@@ -2408,11 +2415,12 @@ bozo_mission_be_liek
             {
                 ClassIcon tank_skeleton
                 Health 23000
-                Speed 75
+                Speed 70
                 Name "tankboss_skele"
                 Skin 0	// Only Use Skin 1 as the final tank
 				StartingPathTrackNode "path_tank_default"
                 DisableSmokestack 1
+                NoCrushDamage 1 // Stupid Skeleton NPC's getting clipped me inside the tank causing the instant death
 				OnBombDroppedOutput
 				{
 					Target	boss_deploy_relay
@@ -2447,7 +2455,7 @@ bozo_mission_be_liek
         }
         WaveSpawn // Giant punchie
         {
-            Name c2_3
+            Name c2_1
             WaitForAllDead c1_1
             TotalCurrency 75
             TotalCount 3
@@ -2455,7 +2463,7 @@ bozo_mission_be_liek
             SpawnCount 1
             Where spawnbot_chief
             WaitBeforeStarting 7
-            WaitBetweenSpawns 16
+            WaitBetweenSpawns 18
             TFBot
             {
                 Template T_TFBot_Giant_Boxing_Heavy
@@ -2601,8 +2609,8 @@ bozo_mission_be_liek
       		    {
                     "deploy time decreased" 0.001
         		    "move speed bonus" 0.32
-        		    "damage force reduction" 0.6
-        		    "airblast vulnerability multiplier" 0.6
+        		    "damage force reduction" 0.1
+        		    "airblast vulnerability multiplier" 0.1
         		    "override footstep sound set" 7 
                     "rage giving scale" 0.1
 				    "voice pitch scale" 0
@@ -2618,8 +2626,8 @@ bozo_mission_be_liek
                 }
                 Spell [$SIGSEGV]
                 {
-                    Delay 20
-                    Cooldown 25
+                    Delay 15
+                    Cooldown 20
                     IfSeeTarget 0
                     Charges 1
                     Limit 1
@@ -2627,8 +2635,8 @@ bozo_mission_be_liek
                 }
                 Spell [$SIGSEGV]
                 {
-                    Delay 15
-                    Cooldown 10
+                    Delay 9
+                    Cooldown 12
                     IfSeeTarget 0
                     Charges 1
                     Limit 1
@@ -2646,7 +2654,7 @@ bozo_mission_be_liek
                 Spell [$SIGSEGV]
                 {
                     Delay 20
-                    Cooldown 20
+                    Cooldown 10
                     IfSeeTarget 0
                     Charges 1
                     Limit 1
@@ -2852,7 +2860,7 @@ bozo_mission_be_liek
             Where spawnbot_left
             Where spawnbot_right
             WaitBeforeStarting 6
-            WaitBetweenSpawns 18
+            WaitBetweenSpawns 22
             Squad
             {
                 TFBot
@@ -3026,7 +3034,7 @@ bozo_mission_be_liek
             }
             Tank
             {
-                Health 11000
+                Health 10000
                 Speed 125
                 Name "matryoshka_tank1"
                 Skin 0
@@ -3061,7 +3069,7 @@ bozo_mission_be_liek
             //FirstSpawnWarningSound "mvm/mvm_tank_start.wav"
             Tank
             {
-                Health 9000
+                Health 8000
                 Speed 125
                 Name "matryoshka_tank2"
                 Skin 0
@@ -3095,7 +3103,7 @@ bozo_mission_be_liek
             WaitBeforeStarting 25
             Tank
             {
-                Health 7000
+                Health 6000
                 Speed 125
                 Name "matryoshka_tank3"
                 Skin 0
@@ -3146,7 +3154,7 @@ bozo_mission_be_liek
                     ItemAttributes
                     {
                         ItemName "The Gas Passer"
-                        "mult_item_meter_charge_rate" 2
+                        "mult_item_meter_charge_rate" 0.5
                         "effect cond override" 1775739 // You know where this is going
                     }
                     Tag bot_giant
@@ -3166,8 +3174,8 @@ bozo_mission_be_liek
         {
             Name d2_2
             WaitForAllSpawned d1_2
-            TotalCurrency 75
-            TotalCount 36
+            TotalCurrency 30
+            TotalCount 16
             MaxActive 7
             SpawnCount 3
             Where spawnbot_left
@@ -3179,9 +3187,36 @@ bozo_mission_be_liek
                 Template The_skeleton_gatebot_but_arrows
             }
         }
-        WaveSpawn // Blunderbuss Scout
+        WaveSpawn // Bowman
         {
             Name d2_3
+            WaitForAllDead d2_2
+            TotalCurrency 45
+            TotalCount 16
+            MaxActive 7
+            SpawnCount 3
+            Where spawnbot_left
+            Where spawnbot_right
+            WaitBeforeStarting 6
+            WaitBetweenSpawns 6
+            TFBot
+            {
+                Template T_TFBot_Sniper_Huntsman
+                Name "Skeleton Archer"
+                Scale 1.002
+                WeaponRestrictions PrimaryOnly
+                UseCustomModel "models/bots/skeleton_sniper/skeleton_sniper.mdl"
+                DeathSound "misc/halloween/skeleton_break.wav"
+                Item "Larrikin Robin"
+                CharacterAttributes
+                {
+                    "voice pitch scale" 0
+                }
+            }
+        }
+        WaveSpawn // Blunderbuss Scout
+        {
+            Name d2_4
             WaitForAllSpawned d1_2
             TotalCurrency 125
             TotalCount 12
@@ -3243,7 +3278,7 @@ bozo_mission_be_liek
             Tank
             {
                 Health 5555
-                Speed 105
+                Speed 95
                 Name "another_silly_tank"
                 Skin 0
                 StartingPathTrackNode "path_tank_default"
@@ -3338,7 +3373,7 @@ bozo_mission_be_liek
         WaveSpawn // Cluster Pirate Zombie
         {
             Name d3_3
-            WaitForAllSpawned d2_2
+            WaitForAllSpawned d2_3
             TotalCurrency 25
             TotalCount 16
             MaxActive 9
@@ -3784,7 +3819,7 @@ bozo_mission_be_liek
                 Class Soldier
                 ClassIcon soldier_bison_rng // personal preference, Go fuck yourself Package
                 Name "Undead Rainbow Pony"
-                Skill Hard
+                Skill Normal // Hard
                 WeaponRestrictions SecondaryOnly
                 Attributes AlwaysCrit
                 UsehumanModel 2 [$SIGSEGV]
@@ -4233,7 +4268,7 @@ bozo_mission_be_liek
             Where spawnbot_left
             Where spawnbot_right
             WaitBeforeStarting 8
-            WaitBetweenSpawns 15
+            WaitBetweenSpawns 20
             Squad
             {
                 TFBot
@@ -4327,7 +4362,7 @@ bozo_mission_be_liek
                     FireWeapon // Randomly airblast for no real reason
                     {
                         Delay 6
-                        Cooldown 6
+                        Cooldown 3
                         Repeats 666
                         Duration 0.1
                         Type "Secondary"
@@ -4448,7 +4483,7 @@ bozo_mission_be_liek
             Where spawnbot_right
             Where spawnbot_left
             WaitBeforeStarting 15
-            WaitBetweenSpawns 22
+            WaitBetweenSpawns 24
             Squad
             {
                 TFBot
@@ -4587,7 +4622,7 @@ bozo_mission_be_liek
                     FireWeapon // Randomly airblast for no real reason
                     {
                         Delay 6
-                        Cooldown 6
+                        Cooldown 3
                         Repeats 666
                         Duration 0.1
                         Type "Secondary"
@@ -4802,9 +4837,10 @@ bozo_mission_be_liek
                     "damage bonus" 4
                     "clip size bonus" 3
                     "fire rate bonus" 0.65
-                    "spread penalty" 2
+                    //"spread penalty" 2 // Fuck this nerf, basically hits nothing
                     "reload time increased" 2.5
                     "projectile penetration" 1
+                    "fire rate bonus with reduced health" 0.2
                 }
                 CharacterAttributes
 			    {
@@ -4815,7 +4851,7 @@ bozo_mission_be_liek
 				    "airblast vulnerability multiplier" 0.001
 				    "override footstep sound set" 7
                     "rage giving scale" 0.1
-                    "health regen" 10
+                    "health regen" 15
 			    }
                 FireWeapon
 				{
@@ -4883,7 +4919,7 @@ bozo_mission_be_liek
 				    "airblast vulnerability multiplier" 0.001
 				    "override footstep sound set" 6
                     "rage giving scale" 0.1
-                    "health regen" 15
+                    "health regen" 20
 			    }
                 ChangeAttributes [$SIGSEGV]  
                 {
@@ -4923,7 +4959,7 @@ bozo_mission_be_liek
                         {
                             ItemName "The Axtinguisher"
                             "is_passive_weapon" 1
-                            "damage bonus" 1.5
+                            "damage bonus" 2
                         }
                     }
                     phase2 // Torpedo like rockets
@@ -4936,6 +4972,7 @@ bozo_mission_be_liek
 					    {
 						    ItemName "tf_weapon_rocketlauncher"
 						    "custom item model" "models/weapons/c_models/c_flaregun_pyro/c_flaregun_pyro.mdl"
+                            "damage bonus" 1.5
                             "reload full clip at once" 1
                             "fire rate bonus" 0.001
                             "clip size upgrade atomic" 7
@@ -5009,7 +5046,6 @@ bozo_mission_be_liek
             WaitBeforeStarting 15
             WaitBetweenSpawns 25
             TFBot { Template The_Funny_Buster_Bot Action SuicideBomber UseBusterModel 1 [$SIGSEGV] }
-            
         }
         WaveSpawn // Jacked up pyro
         {
@@ -5082,12 +5118,12 @@ bozo_mission_be_liek
             WaitForAllSpawned g2_1
             TotalCurrency 1000
             TotalCount 500
-            MaxActive 14
+            MaxActive 8
             SpawnCount 2
             Support 1
             Where spawnbot_main
             WaitBeforeStarting 7
-            WaitBetweenSpawns 4
+            WaitBetweenSpawns 3
             RandomChoice
             {
                 TFBot
