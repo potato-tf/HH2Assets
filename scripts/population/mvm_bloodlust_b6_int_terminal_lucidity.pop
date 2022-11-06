@@ -859,7 +859,7 @@ population
 			SecondaryAttributes
 			{
 				"clip size penalty"			-0.5
-				"fire rate penalty HIDDEN"	-0.35
+				"fire rate penalty HIDDEN"	0.35
 			}
 		}
 		UberOnKill	// spy - ubercharge on kill
