@@ -3,7 +3,7 @@
 //Map: Skeleclipse
 //Map Maker: Bazooks
 //Uses rafmod
-//V8 (no buff)
+//V8a
 
 //
 // Starting Currency: 3000
@@ -1939,7 +1939,7 @@ WaveSchedule
 		WaveSpawn   //small crit turret tank left ($100)
 		{
 			TotalCount 1
-			WaitBeforeStarting 0
+			WaitBeforeStarting 5
 			TotalCurrency 100
 			Name "w2f_turret_tank_left"
 			WaitBeforeStarting 15
@@ -1968,7 +1968,7 @@ WaveSchedule
 		WaveSpawn   //small crit turret tank middle ($100)
 		{
 			TotalCount 1
-			WaitBeforeStarting 5
+			WaitBeforeStarting 10
 			TotalCurrency 100
 			Name "w2f_turret_tank_middle"
 			WaitBeforeStarting 20
@@ -1996,7 +1996,7 @@ WaveSchedule
 		WaveSpawn   //small crit turret tank right ($100)
 		{
 			TotalCount 1
-			WaitBeforeStarting 10
+			WaitBeforeStarting 0
 			TotalCurrency 100
 			Name "w2f_turret_tank_right"
 			WaitBeforeStarting 25
