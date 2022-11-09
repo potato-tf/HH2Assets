@@ -86,7 +86,7 @@ WaveSchedule
 				"dmg penalty vs players" -0.35
 				"engy building health bonus" 0.5 
 			}
-			Description "+Primary fire now uses an explosive +35% max building health -250% slower firing speed" 
+			Description "+Primary fire now uses an explosive +50% max building health -250% slower firing speed" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -129,7 +129,7 @@ WaveSchedule
 			{
 				"no metal from dispensers while active" 1
 			}
-			Description "(i)when active: +35% sentry damage bonus -90% less metal from packs and dispensers" 
+			Description "+35% sentry damage bonus -No Metal from dispenser while active" 
 			Tier 1
             Allowplayerclass Engineer
             AllowedWeapons
@@ -170,7 +170,7 @@ WaveSchedule
 				"clip size penalty HIDDEN" -0.35
 				"auto fires full clip" 1
 			}
-			Description "(i)Uses Beggars Style Reload +35% damage bonus +180% damage while disguised -50% slower reload -35% mag size" 
+			Description "(i)Uses Beggars Style Reload +75% damage bonus +180% damage while disguised -50% slower reload -35% mag size" 
 			Tier 1
             AllowedWeapons
 			{

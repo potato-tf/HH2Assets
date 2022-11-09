@@ -39,7 +39,7 @@ WaveSchedule
 			SecondaryAttributes
 			{
 				"mult projectile count" 3
-				"grenade damage reduction on world contact" 18
+				"grenade damage reduction on world contact" 14
 				"damage bonus HIDDEN" -0.9
 				"projectile spread angle penalty" 5
 				"fire rate penalty HIDDEN" 0.8

@@ -291,7 +291,7 @@ WaveSchedule
 			{
 				"mult dmg vs giants" 1.0
 			}
-			Description "+Damages all enemies connected via medi-beam +50% damage to giant robots" 
+			Description "+Damages all enemies connected via medi-beam +100% damage to giant robots" 
 			Tier 1
 			AllowedWeapons
 			{
