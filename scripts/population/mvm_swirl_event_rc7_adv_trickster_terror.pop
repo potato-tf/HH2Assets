@@ -2563,7 +2563,7 @@ bozo_mission_be_liek
         WaveSpawn // Skeleton king
         {
             Name c3_1
-            WaitForAllDead c2_3
+            WaitForAllDead c2_1
             TotalCurrency 300
             TotalCount 1
             MaxActive 1
