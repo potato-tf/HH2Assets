@@ -673,6 +673,7 @@ WaveSchedule
 	//	"mult crit dmg" 0.67 // relic of an old version
 		Scout
 		{
+			"min respawn time" 4444 // disable scout's quick respawn
 			"hidden maxhealth non buffed" -25
 			"move speed penalty" 0.7
 			"can headshot" 1
