@@ -29,19 +29,19 @@ WaveSchedule
 		}
 		XbowColonel
         {
-            Name "Unstable overclock: Screwdriver" // Name of the upgrade displayed on the menu
-            Attribute "bleeding duration" // The attribute name
-            Cap 5 // Maximum amount of the attribute
-            Increment 5 // Attribute increment value per level
-            Cost 0 // Cost of the upgrade per level
+            Name "Unstable overclock: Screwdriver"
+            Attribute "bleeding duration"
+            Cap 5
+            Increment 5
+            Cost 0
             Description "Causes heavy bleed and more damage to tanks. Lowers reload, fire rate and move speed."
-            AllowPlayerClass Medic
-            AllowedWeapons // Restricts upgrade to specified weapons
+			Tier 1
+            AllowedWeapons
             {
                 itemname "The Crusader's Crossbow"
                 ItemName "Festive Crusader's Crossbow"
             }
-            SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+            SecondaryAttributes
             {
                 "damage bonus" 0.1
                 "mult dmg vs tanks" 1.75
@@ -190,6 +190,7 @@ WaveSchedule
 				"dmg from ranged reduced" -0.5
 				"effect cond override" 6672
 				"mult effect duration" 5
+				"provide on active" 1
 			}
             Allowplayerclass Medic
             AllowedWeapons
