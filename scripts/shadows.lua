@@ -99,7 +99,6 @@ local function cashforhits(activator)
 		-- PrintTable(damageInfo)
 
 		local damage = damageInfo.Damage
-		util.PrintToChatAll(damage)
 		if damage <= 0 then
 			return
 		end
