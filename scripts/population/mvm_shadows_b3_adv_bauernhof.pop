@@ -670,6 +670,7 @@ WaveSchedule
 		"mult_patient_overheal_penalty_active" 0.5
 		Scout
 		{
+			"min respawn time" 4444 // disable scout's quick respawn
 			"hidden maxhealth non buffed" -25
 			"move speed penalty" 0.7
 			"can headshot" 1
