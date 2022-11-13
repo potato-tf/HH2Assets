@@ -99,6 +99,7 @@ local function cashforhits(activator)
 		-- PrintTable(damageInfo)
 
 		local damage = damageInfo.Damage
+		util.PrintToChatAll(damage)
 		if damage <= 0 then
 			return
 		end
@@ -258,6 +259,17 @@ end
 
 -- and here's the stuff made by Washy
 -- likewise, plenty of kudos
+
+function OnWaveReset()
+	for _, player in pairs(ents.GetAllPlayers()) do
+		if player:IsRealPlayer() then
+			for weapon = 0, 3, 1 do
+				player.loadout[weapon] = "Default"
+			end
+		end
+	end
+	timer.Stop(TextDisplay)
+end
 
 function OnGameTick()
 	for _, player in pairs(ents.GetAllPlayers()) do
@@ -449,7 +461,7 @@ function OnWaveStart()
 	--			end
 	--		end)
 	end)
-	timer.Create(1, function()
+	TextDisplay = timer.Create(1, function()
 		ents.FindByName("poweruptext"):AcceptInput("$SetKey$message",FireSaleText .. "\n" ..InstakillText .. "\n" ..DoublePointsText)
 		ents.FindByName("poweruptext"):AcceptInput("Display")
 		ents.FindByName("enemytext"):AcceptInput("Display")
