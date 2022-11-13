@@ -345,6 +345,11 @@ function OnPlayerConnected(player)
 					player:GiveItem(player.loadout[weapon])
 				end
 			end
+			player.vm_jug = false
+			player.vm_quickrev = false
+			player.vm_speed = false
+			player.vm_blaster = false
+			player.vm_dt = false
 		end)
 		
 	else
