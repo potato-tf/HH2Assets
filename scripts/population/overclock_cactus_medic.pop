@@ -29,28 +29,29 @@ WaveSchedule
 		}
 		XbowColonel
         {
-            Name "Unstable overclock: Screwdriver"
+            Name "Unstable Mod: Screwdriver Arrow" 
             Attribute "bleeding duration"
-            Cap 5
-            Increment 5
-            Cost 0
-            Description "Causes heavy bleed and more damage to tanks. Lowers reload, fire rate and move speed."
+            Cap 3
+            Increment 3
+            Cost 0 
 			Tier 1
-            AllowedWeapons
+            Description "Drills into robots and deals huge damage to tanks. But your medigun heal much less and you move slower."
+            AllowPlayerClass Medic
+            AllowedWeapons 
             {
                 itemname "The Crusader's Crossbow"
                 ItemName "Festive Crusader's Crossbow"
             }
-            SecondaryAttributes
+            SecondaryAttributes 
             {
-                "damage bonus" 0.1
-                "mult dmg vs tanks" 1.75
-                "Reload time increased" 2
-                "halloween fire rate bonus" 1.5
-                "Projectile speed decreased" -0.33
+                "damage bonus" 0.33333333 //100 max arrow damage
+                "mult dmg vs tanks" 1.5 
+                "Reload time increased" 1.8
+                "halloween fire rate bonus" 1.35  
                 "mult bleeding delay" -0.8
-                "mult bleeding dmg" 1.25
-                "move speed bonus" -0.25
+                "mult bleeding dmg" 1.5 //10 bleed per tick
+                 "heal rate penalty" -0.85
+                "move speed bonus" -0.2
             }
         }
 		NeedleBalancedB
