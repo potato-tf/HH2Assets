@@ -112,10 +112,10 @@ WaveSchedule
 				"mod projectile heat follow crosshair" 1
 				"mod projectile heat seek power" 360
 				"clip size penalty" -0.5
-				"damage penalty" -0.15
+				"damage penalty" -0.1
 				"Projectile speed decreased" -0.35
 			}
-			Description "+25% increase to rocket jump bonuses +Rockets follow cross-hair -50% clip size -35% slower projectile speed" 
+			Description "+25% increase to rocket jump bonuses +Rockets follow cross-hair -50% clip size -35% slower projectile speed -10% damage penalty" 
 			Tier 1
 			AllowedWeapons
 			{
