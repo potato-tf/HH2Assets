@@ -104,16 +104,16 @@ WaveSchedule
 		{
 			Name "Unstable Mod: Pocket Shield Lens"
 			Attribute "increase buff duration"
-			Cap 1.35
-			Increment 0.35
+			Cap 1.05
+			Increment 0.05
 			Cost 0hield is replaced by a smaller shield that deals more dama
-			Description "(i) shield is replaced by a smaller shield +25 Max health +40% faster healing speed +25% faster uber rate" 
+			Description "(i) shield is replaced by a smaller shield +25 Max health +40% faster healing speed +20% faster uber rate" 
 			Tier 1
 			SecondaryAttributes 
 			{
 				"heal rate bonus" 0.4
-				"ubercharge overheal rate penalty" 0.25
-				"dmg penalty vs players" 2.5 //150% damage bonus
+				"ubercharge overheal rate penalty" 0.2
+				"dmg penalty vs players" 2.0 //150% damage bonus
 				"max health additive bonus"	25
 			}
             AllowedWeapons
