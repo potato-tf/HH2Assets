@@ -259,6 +259,7 @@ WaveSchedule
 			{
 				Target boss_music
 				Action PlaySound
+				Delay 3
 			}
 			ambient_generic
 			{
@@ -676,6 +677,7 @@ WaveSchedule
 	}
 	
 	PrecacheGeneric "lunar_madness_cc.raw" //color correction
+	PrecacheSound "AstrumDeus.mp3"
 
 	SpawnTemplate "IntelTele"
 	SpawnTemplate "spooky_madness"
