@@ -134,11 +134,13 @@ WaveSchedule
 			Description "For every kill get 5 seconds of crit boost" 
 			Tier 1
             AllowPlayerClass Scout
+            AllowPlayerClass Sniper
 			AllowedWeapons
 			{
 				ClassName tf_weapon_handgun_scout_secondary 
 				ClassName TF_WEAPON_PISTOL_SCOUT
 				ItemName "The C.A.P.P.E.R"
+				ClassName TF_WEAPON_SMG
 			}
 		}
 ////Scout Misc

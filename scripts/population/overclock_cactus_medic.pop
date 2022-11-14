@@ -227,6 +227,30 @@ WaveSchedule
 				ItemName "Festive Huntsman"
 			}
 		}
+		StockOnly
+		{
+			Name "Stable Mod: Anti Armor"
+			Attribute "mult dmg vs tanks"
+			Cap 1.5
+			Increment 0.5
+			Cost 0
+			Description "+50% damage to tanks" 
+			Tier 1
+            Allowplayerclass Sniper
+            AllowedWeapons
+			{
+				Slot "Primary"
+			}
+            DisallowedWeapons
+			{
+				ItemName "The Hitman's Heatmaker"
+				ItemName "The Huntsman"
+				ItemName "The Fortified Compound"
+				ItemName "Festive Huntsman"
+				ItemName "The Machina"
+				ItemName "The Bazaar Bargain"
+			}
+		}
 		HuntsmanA
 		{
 			Name "Stable Mod: Rubber Compound"

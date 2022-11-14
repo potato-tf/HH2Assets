@@ -220,6 +220,7 @@ WaveSchedule
             Allowplayerclass Engineer
             Allowplayerclass Heavyweapons
             Allowplayerclass Pyro
+            Allowplayerclass Spy
 			AllowedWeapons
 			{
 				ItemName "Panic Attack Shotgun"
@@ -227,6 +228,7 @@ WaveSchedule
 				ClassName TF_WEAPON_SHOTGUN_HWG
 				ClassName TF_WEAPON_SHOTGUN_PRIMARY
 				ItemName "The Family Business"
+				ClassName TF_WEAPON_REVOLVER
 			}
 			DisallowedWeapons // Disallow those weapons
 			{
