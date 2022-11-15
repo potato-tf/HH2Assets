@@ -483,10 +483,10 @@ Wave
 			SpawnCount	1
 			MaxActive	1
 			TotalCount	1
-			TotalCurrency	200
+			TotalCurrency	250
 	                Tank
 	                {
-		               Health	25000
+		               Health	20000
 				Name	tank
 				Speed	75
 				StartingPathTrackNode	path_tank_default
@@ -800,7 +800,7 @@ Wave
 			WaitBetweenSpawns	0
 			Tank
 	                {
-		               Health	25000
+		               Health	22000
 				Name	tank
 				Speed	75
 				StartingPathTrackNode	path_tank_reverse
@@ -828,7 +828,7 @@ Wave
 			WaitBetweenSpawns	0
 		Tank
 	                {
-		               Health	25000
+		               Health	22000
 				Name	tank
 				Speed	75
 				StartingPathTrackNode	path_tank_reverse
@@ -1355,7 +1355,7 @@ WaveSpawn
 			TotalCurrency 75
 			Tank
 			{
-				Health					30000
+				Health					25000
 				Name					"tankboss"
 				Speed					75
 				StartingPathTrackNode	path_tank_default
@@ -1678,7 +1678,7 @@ WaveSpawn
 			SpawnCount	1
 			Tank
 			{
-				Health					30000
+				Health					25000
 				Name					"tankboss"
 				Speed					75
 				StartingPathTrackNode	path_tank_default
@@ -1704,7 +1704,7 @@ WaveSpawn
 			WaitBeforeStarting	30
 			Tank
 			{
-				Health					30000
+				Health					25000
 				Name					"tankboss"
 				Speed					75
 				StartingPathTrackNode	path_tank_default
@@ -1968,7 +1968,7 @@ WaveSpawn
 			}
 			Tank
 			{
-				Health 35000
+				Health 30000
 				Name sticky_tank
 				Speed 75
 				Skin 1

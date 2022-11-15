@@ -935,13 +935,13 @@ cliff_of_dover
 			WaitBeforeStarting 15
 			WaitBetweenSpawns 0
 		
-			TotalCurrency 100
+			TotalCurrency 150
 		
 			Tank
 			{
 				Name "tankboss"
 				StartingPathTrackNode "tank_path_1"
-				Health 11500
+				Health 10000
 				Speed 70
 
 				ClassIcon tank_shield

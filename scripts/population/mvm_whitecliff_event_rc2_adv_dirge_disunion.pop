@@ -5,7 +5,7 @@
 #base robot_standard.pop
 population
 {
-	StartingCurrency				1100
+	StartingCurrency				1200
 	RespawnWaveTime					2
 	CanBotsAttackWhileInSpawnRoom	no
 	FixedRespawnWaveTime			Yes
@@ -506,7 +506,7 @@ population
 			{
 				ItemName	"The Righteous Bison"
 			}
-			Cost 500
+			Cost 400
 			Attribute "Set DamageType Ignite"
 			Increment 1
 			Cap 1
@@ -542,7 +542,7 @@ population
 			{
 				ItemName	"The Phlogistinator"
 			}
-			Cost 250
+			Cost 200
 			Attribute "mult reflect velocity"
 			Increment 0.25
 			Cap 2
@@ -615,7 +615,7 @@ population
 			{
 				Slot	"Primary"
 			}
-			Cost 400
+			Cost 350
 			Attribute "mult dmg vs tanks"
 			Increment 0.25
 			Cap 1.5
@@ -672,7 +672,7 @@ population
 			{
 				ItemName	"The Widowmaker"
 			}
-			Cost 200
+			Cost 150
 			Attribute "damage bonus"
 			Increment 0.33
 			Cap 1.99
@@ -690,7 +690,7 @@ population
 			{
 				ItemName	"The Rescue Ranger"
 			}
-			Cost 250
+			Cost 200
 			Attribute "engineer building teleporting pickup"
 			Increment 150
 			Cap 150
@@ -721,6 +721,32 @@ population
 			AllowedWeapons
 			{
 				Slot	"Melee"
+			}
+			DisallowedWeapons
+			{
+				ItemName "The Gunslinger"
+			}
+			Cost 500
+			Attribute "mod teleporter speed boost"
+			Increment 1
+			Cap 1
+			SecondaryAttributes
+			{
+				"mult teleporter recharge rate"	-0.5
+				"engy sentry damage bonus"		0.15
+				"engy sentry radius increased"	0.2
+				"mvm sentry ammo"				0.2
+				"mult dispenser rate"			0.4
+			}
+		}
+		BuildingMasteryGS	//
+		{
+			Name "Building Mastery"
+			Description "Increases Sentry Gun damage and range, Dispenser heal rate, and Teleporter recharge rate."
+			AllowPlayerClass Engineer
+			AllowedWeapons
+			{
+				ItemName "The Gunslinger"
 			}
 			Cost 500
 			Attribute "mod teleporter speed boost"
@@ -763,7 +789,7 @@ population
 			{
 				Slot	"Secondary"
 			}
-			Cost 100
+			Cost 50
 			Attribute "mult medigun range"
 			Increment 0.25
 			Cap 2
@@ -798,8 +824,8 @@ population
 			}
 			Cost 200
 			Attribute "add uber charge on hit"
-			Increment 0.15
-			Cap 0.15
+			Increment 0.2
+			Cap 0.2
 		}
 		DamageConnected	// sniper - add damage all connected via healing beams to bows and increase sniper max health
 		{
@@ -3188,7 +3214,7 @@ population
 			}
 			Tank
 			{
-				Health	18000
+				Health	14000
 				Name	"Tank"
 				Speed	75
 				StartingPathTrackNode	tank_path_1
@@ -3477,7 +3503,7 @@ population
 			}
 			Tank
 			{
-				Health	30000
+				Health	28000
 				Name	"Tank"
 				Speed	75
 				StartingPathTrackNode	tank_path_1
@@ -3579,7 +3605,7 @@ population
 			WaitBetweenSpawns	0
 			Tank
 			{
-				Health	20000
+				Health	18000
 				Name	"Tank"
 				Speed	75
 				StartingPathTrackNode	tankpath_nogate_1
