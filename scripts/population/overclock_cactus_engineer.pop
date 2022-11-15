@@ -233,7 +233,7 @@ WaveSchedule
 			{
 				"health from credits" 180
 			}
-			Description "Cloak no longer alerts robots on contact and increases movement speed and damage resistance, but cloak drains 60% faster" 
+			Description "Gain Cash Magnet and cash healing" 
 			Tier 1
             AllowedWeapons
 			{
