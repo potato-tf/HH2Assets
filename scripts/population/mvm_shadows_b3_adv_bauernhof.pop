@@ -194,6 +194,8 @@ WaveSchedule
 	PrecacheSound "shadows/perk_regalreserve.mp3"
 	PrecacheSound "shadows/perk_saxton.mp3"
 	PrecacheSound "shadows/perk_usesfx.mp3"
+	PrecacheSound "shadows/powerup_firesale01.mp3"
+	PrecacheSound "shadows/gallery_music.mp3"
 	PrecacheSound "shadows/powerup_doublepoints.mp3"
 	PrecacheSound "shadows/powerup_instagib.mp3"
 	PrecacheSound "shadows/powerup_money_01.mp3"
