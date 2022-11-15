@@ -222,10 +222,39 @@ Waveschedule
                 "OnMapSpawn" "bomb_event_5,Kill,,-1"
             }
         }
+        improved_nest10 // Made by Yuugi
+        {
+            NoFixup 1
+            logic_auto
+            {
+                "OnMapSpawn" "nest10,Kill,,-1"
+                "OnMapSpawn" "wave_finished_relay,AddOutput,OnTrigger nest10_improved:Enable::-1"
+                "OnMapSpawn" "bombpath_right_relay,AddOutput,OnTrigger nest10_improved:Disable::-1"
+            }
+            bot_hint_engineer_nest
+			{
+			    "targetname" "nest10_improved"
+				"origin" "-1864 4408 -201.375"
+				"angles" "0 174 0"
+			}
+		    bot_hint_sentrygun
+			{
+			    "targetname" "nest10_improved"
+				"origin" "-1888 4256 -217.375"
+				"angles" "0 210 0"
+			}
+			bot_hint_teleporter_exit
+			{
+			    "targetname" "nest10_improved"
+			    "origin" "-1889 4544 -208"
+				"angles" "0 270 0"
+			}
+        }
     }
 
     SpawnTemplate book_disable
     SpawnTemplate spell_book_pickup
+    SpawnTemplate improved_nest10
     ////////////////////////////////////BOT TEMPLATES
     ////////////////////////////////////////////////////
     Templates // Made by Yuugi
