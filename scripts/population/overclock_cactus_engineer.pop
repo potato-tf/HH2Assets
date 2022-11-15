@@ -165,12 +165,12 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"damage bonus while disguised" 1.8
+				"damage bonus while disguised" 3.0
 				"Reload time increased" 0.5
 				"clip size penalty HIDDEN" -0.35
 				"auto fires full clip" 1
 			}
-			Description "(i)Uses Beggars Style Reload +75% damage bonus +180% damage while disguised -50% slower reload -35% mag size" 
+			Description "(i)Uses Beggars Style Reload +75% damage bonus +300% damage while disguised -50% slower reload -35% mag size" 
 			Tier 1
             AllowedWeapons
 			{

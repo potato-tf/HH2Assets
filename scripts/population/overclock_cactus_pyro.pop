@@ -83,8 +83,9 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"Projectile speed decreased" -0.35
+				"bleeding duration" 3
 			}
-			Description "+75% damage bonus -35% slower projectile speed" 
+			Description "+75% damage bonus +3s bleed -35% slower projectile speed" 
 			Tier 1
             AllowPlayerClass Pyro
 			AllowedWeapons
