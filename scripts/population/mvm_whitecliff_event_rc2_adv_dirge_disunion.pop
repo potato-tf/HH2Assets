@@ -748,14 +748,14 @@ population
 			{
 				ItemName "The Gunslinger"
 			}
-			Cost 500
+			Cost 350
 			Attribute "mod teleporter speed boost"
 			Increment 1
 			Cap 1
 			SecondaryAttributes
 			{
 				"mult teleporter recharge rate"	-0.5
-				"engy sentry damage bonus"		0.15
+				"engy sentry damage bonus"		0.35
 				"engy sentry radius increased"	0.2
 				"mvm sentry ammo"				0.2
 				"mult dispenser rate"			0.4
@@ -771,7 +771,7 @@ population
 				ItemName	"The Crusader's Crossbow"
 				ItemName	"Festive Crusader's Crossbow"
 			}
-			Cost 250
+			Cost 200
 			Attribute "add cond on hit duration"
 			Increment 4
 			Cap 4

@@ -537,7 +537,7 @@ population
 			{
 				ItemName	"The Phlogistinator"
 			}
-			Cost 250
+			Cost 200
 			Attribute "mult reflect velocity"
 			Increment 0.25
 			Cap 2
@@ -667,7 +667,7 @@ population
 			{
 				ItemName	"The Widowmaker"
 			}
-			Cost 200
+			Cost 150
 			Attribute "damage bonus"
 			Increment 0.33
 			Cap 1.99
@@ -685,7 +685,7 @@ population
 			{
 				ItemName	"The Rescue Ranger"
 			}
-			Cost 250
+			Cost 200
 			Attribute "engineer building teleporting pickup"
 			Increment 150
 			Cap 150
@@ -740,7 +740,7 @@ population
 				ItemName	"The Crusader's Crossbow"
 				ItemName	"Festive Crusader's Crossbow"
 			}
-			Cost 250
+			Cost 200
 			Attribute "add cond on hit duration"
 			Increment 4
 			Cap 4
@@ -758,7 +758,7 @@ population
 			{
 				Slot	"Secondary"
 			}
-			Cost 100
+			Cost 50
 			Attribute "mult medigun range"
 			Increment 0.25
 			Cap 2
@@ -793,8 +793,8 @@ population
 			}
 			Cost 200
 			Attribute "add uber charge on hit"
-			Increment 0.15
-			Cap 0.15
+			Increment 0.2
+			Cap 0.2
 		}
 		DamageConnected	// sniper - add damage all connected via healing beams to bows and increase sniper max health
 		{
