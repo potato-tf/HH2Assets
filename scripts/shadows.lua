@@ -118,8 +118,9 @@ local function cashforhits(activator)
 
 		local curHealth = activator.m_iHealth
 
-		if InstakillDuration > 0 then --added here to fix instakill bug -washy
+		if InstakillDuration > 0 and activator.m_szNetname == "Zombie" and hitter:InCond(56) == 1 then --added here to fix instakill bug -washy
 			damage = curHealth
+			activator.m_iHealth = 0
 		end
 
 		local isLethal = curHealth - (damage + 1) <= 0
@@ -317,18 +318,6 @@ function OnPlayerConnected(player)
 		player.HoldTime = 0
 		player.InteractWith = "nothing"
 		player.InteractCooldown = false
-		player.vm_jug = false
-		player.vm_quickrev = false
-		player.vm_speed = false
-		player.vm_blaster = false
-		player.vm_dt = false
-		player:AddCallback(ON_DEATH, function()
-			player.vm_jug = false
-			player.vm_quickrev = false
-			player.vm_speed = false
-			player.vm_blaster = false
-			player.vm_dt = false
-		end);
 		player.loadout = {[0] = "Default", [1] = "Default", [2] = "Default"}
 
 		local handle = player:GetHandleIndex()
@@ -345,17 +334,12 @@ function OnPlayerConnected(player)
 					player:GiveItem(player.loadout[weapon])
 				end
 			end
-			player.vm_jug = false
-			player.vm_quickrev = false
-			player.vm_speed = false
-			player.vm_blaster = false
-			player.vm_dt = false
 		end)
 		
 	else
 		player:AddCallback(ON_DEATH, function()
 			local number = math.random(1,100)
-			if number <= 3 then -- 3% chance 
+			if number <= 100 then -- 3% chance 
 				DropPowerup(player)
 			end
 		end);
@@ -375,7 +359,7 @@ function OnWaveStart()
 	ThunderGunTaken = false
 	DumpsterRoulette = {1,2,3,4,5}
 	DumpsterRouletteIndex = 1
-	PowerupTable = {[1] = "DoublePoints", [2] = "FireSale", [3] = "Instakill", [4] = "Nuke", [5] = "MaxAmmo"}
+	PowerupTable = {[1] = "DoublePoints", [2] = "FireSale", [3] = "Instakill", [4] = "Nuke", [5] = "MaxAmmo", [6] = "BonusPoints"}
 	PowerupTableIndex = 1
 	ShuffleInPlace(DumpsterRoulette)
 	ShuffleInPlace(PowerupTable)
@@ -499,42 +483,47 @@ function Interact(player)
 	elseif player.InteractWith == "tradeweapon5" then
 		DumpsterBoxTakeWeapon(player, 5)
 	elseif player.InteractWith == "vm_jugbutton" and player.m_nCurrency >= 2500 then
-		if player.vm_jug == false then
+		if player:GetAttributeValue("max health additive bonus") == nil then
 			ents.FindByName("vm_jugbutton"):AcceptInput("Press",_,player)
-			player.vm_jug = true
 			if player:GetPlayerItemBySlot(1):GetClassname() ~= "tf_weapon_pipebomblauncher" then PlayViewmodelSequence(player) end
+			timer.Simple(1, function() player.InteractCooldown = true end)
+			timer.Simple(2.3, function() player.InteractCooldown = false end)
 		else
 			player:Print(2,"You already have this perk!")
 		end
 	elseif player.InteractWith == "vm_quickrevbutton" and player.m_nCurrency >= 1500 then
-		if player.vm_quickrev == false then
+		if player:InCond(70) == 0 then
 			ents.FindByName("vm_quickrevbutton"):AcceptInput("Press",_,player)
-			player.vm_quickrev = true
 			if player:GetPlayerItemBySlot(1):GetClassname() ~= "tf_weapon_pipebomblauncher" then PlayViewmodelSequence(player) end
-		else
+			timer.Simple(1, function() player.InteractCooldown = true end)
+			timer.Simple(2.3, function() player.InteractCooldown = false end)
+		elseif player:InCond(70) == 1 then
 			player:Print(2,"You already have this perk!")
 		end
 	elseif player.InteractWith == "vm_speedbutton" and player.m_nCurrency >= 3000 then
-		if player.vm_speed == false then
+		if player:GetAttributeValue("move speed bonus") == nil then
 			ents.FindByName("vm_speedbutton"):AcceptInput("Press",_,player)
-			player.vm_speed = true
 			if player:GetPlayerItemBySlot(1):GetClassname() ~= "tf_weapon_pipebomblauncher" then PlayViewmodelSequence(player) end
+			timer.Simple(1, function() player.InteractCooldown = true end)
+			timer.Simple(2.3, function() player.InteractCooldown = false end)
 		else
 			player:Print(2,"You already have this perk!")
 		end
 	elseif player.InteractWith == "vm_blasterbutton" and player.m_nCurrency >= 1500 then
-		if player.vm_blaster == false then
+		if player:GetAttributeValue("explosive sniper shot") == nil then
 			ents.FindByName("vm_blasterbutton"):AcceptInput("Press",_,player)
-			player.vm_blaster = true
 			if player:GetPlayerItemBySlot(1):GetClassname() ~= "tf_weapon_pipebomblauncher" then PlayViewmodelSequence(player) end
+			timer.Simple(1, function() player.InteractCooldown = true end)
+			timer.Simple(2.3, function() player.InteractCooldown = false end)
 		else
 			player:Print(2,"You already have this perk!")
 		end
 	elseif player.InteractWith == "vm_dtbutton" and player.m_nCurrency >= 2000 then
-		if player.vm_dt == false then
+		if player:GetAttributeValue("fire rate bonus") == nil then
 			ents.FindByName("vm_dtbutton"):AcceptInput("Press",_,player)
-			player.vm_dt = true
 			if player:GetPlayerItemBySlot(1):GetClassname() ~= "tf_weapon_pipebomblauncher" then PlayViewmodelSequence(player) end
+			timer.Simple(1, function() player.InteractCooldown = true end)
+			timer.Simple(2.3, function() player.InteractCooldown = false end)
 		else
 			player:Print(2,"You already have this perk!")
 		end
@@ -651,25 +640,21 @@ function ActivateFireSale()
 	end end, 0)
 end
 
-function ActivateInstakill()
+function ActivateInstakill(_,player)
 	InstakillDuration = 1980 -- 1980 ticks divided by 66 tick rate = 30 seconds
-	for _, player in pairs(ents.GetAllPlayers()) do
-		if player:IsRealPlayer() then
-			player:Print(2,"Instakill!")
-			player:PlaySoundToSelf("items/powerup_pickup_crits.wav")
-			player:PlaySoundToSelf("shadows/powerup_instagib.mp3")
-			player:SetAttributeValue("dmg current health", 1)
-			player:AddCond(56,30)
-		end
-	end
-	timer.Simple(30,
+		player:Print(2,"Instakill!")
+		player:PlaySoundToSelf("items/powerup_pickup_crits.wav")
+		player:PlaySoundToSelf("shadows/powerup_instagib.mp3")
+		--player:SetAttributeValue("dmg current health", 1)
+		player:AddCond(56,30)
+--[[ 	timer.Simple(30,
 	function() if InstakillDuration <= 0 then
 		for _, player in pairs(ents.GetAllPlayers()) do
 			if player:IsRealPlayer() then
 				player:SetAttributeValue("dmg current health", nil)
 			end
 		end
-	end end)
+	end end) ]]
 end
 
 function ActivateNuke()
@@ -688,6 +673,17 @@ function ActivateMaxAmmo()
 			player:PlaySoundToSelf("shadows/powerup_resupply_01.mp3")
 			player:PlaySoundToSelf("weapons/dispenser_generate_metal.wav")
 			player:RefillAmmo()
+		end
+	end
+end
+
+function ActivateBonusPoints()
+	for _, player in pairs(ents.GetAllPlayers()) do
+		if player:IsRealPlayer() then
+			player:Print(2,"Bonus Points!")
+			player:AcceptInput("$AddCurrency",2000)
+			player:PlaySoundToSelf("shadows/powerup_money_01.mp3")
+			player:PlaySoundToSelf("mvm/mvm_money_pickup.wav")
 		end
 	end
 end
