@@ -245,9 +245,11 @@ WaveSchedule {
 					InterruptAction {
 						Delay 1
 						Repeat 0
+						Target RandomEnemy
 						AimTarget RandomEnemy
 						KillAimTarget 1
 						WaitUntilDone 1
+						AlwaysLook 1
 						OnDoneChangeAttributes "default"
 					}
 				}
