@@ -1,5 +1,5 @@
 //Mission by Lackryx
-//Madhattan_RC1 made by Damno and Nuq
+//Madhattan_rc3 made by Damno and Nuq
 #base robot_giant.pop
 #base robot_standard.pop
 #base robot_gatebot.pop
@@ -11,43 +11,47 @@
 #base overclock_cactus_engineer.pop
 #base overclock_cactus_medic.pop
 #base overclock_cactus_pyro.pop
-//Gate tank model made by Bazooks
+//Gate hat tank made by Yuugi
 WaveSchedule
 {
 	StartingCurrency 600
 	CanBotsAttackWhileInSpawnRoom No
 	RespawnWaveTime 5
 	WaveStartCountdown 3   
-	FixHuntsmanDamageBonus 1  
-	UpgradeStationKeepWeapons 1
+	FixHuntsmanDamageBonus 1   
 	RobotLimit 26  
 	NoRomevisionCosmetics 1  
-	PrecacheModel "models/bots/boss_bot/boss_tank_gate.mdl"
-    PrecacheModel "models/bots/boss_bot/boss_tank_gate_damage1.mdl"
-    PrecacheModel "models/bots/boss_bot/boss_tank_gate_damage2.mdl"
-    PrecacheModel "models/bots/boss_bot/boss_tank_gate_damage3.mdl"
-    SpawnTemplate GateTankManager
+	PrecacheSound "mvm/mvm_used_powerup.wav"  
+	PrecacheSound "mvm/mvm_tank_start.wav"  
+	SpawnTemplate GateTankManager
     PointTemplates
     {  
         GateTankManager
         {
-            NoFixup 1
-            logic_relay
+            logic_auto // Important, also by Yuugi
             {
-                "StartDisabled" "1"
-                "targetname" "setdefaultskinoff"
-                "ontrigger" "gate_tank_boss,Skin,2,0,-1" 
-                "ontrigger" "gate_tank_finalboss,Skin,3,0,-1" 
+                "onmapspawn" "gate2_relay,AddOutput,OnTrigger lights_on:Disable:0:0:-1,0,-1"
+                "onmapspawn" "gate2_relay,AddOutput,OnTrigger lights_off:Enable:0:0:-1,0,-1"
             }
-            logic_auto
+        }
+        Gatetank_sillyhat // Made by Yuugi
+        {
+            prop_dynamic // I'm so good adding drip on the tanks :,)
             {
-                "onmapspawn" "boss_path_2_0,AddOutput,OnPass setdefaultskinoff:Trigger:0:0:-1,0,-1"
-                "onmapspawn" "gate2_relay,AddOutput,OnTrigger setdefaultskinoff:Enable:0:0:-1,0,-1"
-                "onmapspawn" "gate2_relay,AddOutput,OnTrigger gate_tank_boss:Skin:2:0:-1,0,-1"
-                "onmapspawn" "gate2_relay,AddOutput,OnTrigger gate_tank_finalboss:Skin:3:0:-1,0,-1"
-                "onmapspawn" "gate2_relay,AddOutput,OnTrigger spawnbot_main1:Disable:0:0:-1,0,-1"
-                "onmapspawn" "reset_wave_relay,AddOutput,OnTrigger spawnbot_main1:Enable:0:0:-1,0,-1"
-                "onmapspawn" "reset_wave_relay,AddOutput,OnTrigger setdefaultskinoff:Disable:0:0:-1,0,-1"
+                "targetname" "lights_on"
+                "model" "models/bots/gameplay_cosmetic/light_soldier_on.mdl"
+                "angles" "0 0 0"
+				"origin" "-46 0 -142"
+				"modelscale" "4"
+            }
+            prop_dynamic
+            {
+                "targetname" "lights_off"
+                "StartDisabled" "1"
+                "model" "models/bots/gameplay_cosmetic/light_soldier_off.mdl"
+                "angles" "0 0 0"
+				"origin" "-46 0 -142"
+				"modelscale" "4"
             }
         }
     }
@@ -1077,7 +1081,7 @@ WaveSchedule
 			ClassIcon sniper_bow
 			Health 2000
 			Skill Expert
-			UseCustomModel models/bots/sniper_boss/bot_sniper_boss.mdl
+			//UseCustomModel models/bots/sniper_boss/bot_sniper_boss.mdl
 			aimat head
 			aimoffset "0 0 3"
 			aimLeadProjectileSpeed 1
@@ -1701,13 +1705,6 @@ WaveSchedule
 				Health	15000
 				Name	gate_tank_boss
 				Speed	75
-                Model  
-                {
-                   	Default "models/bots/boss_bot/boss_tank_gate.mdl"
-                    Damage1 "models/bots/boss_bot/boss_tank_gate_damage1.mdl"
-                    Damage2 "models/bots/boss_bot/boss_tank_gate_damage2.mdl"
-                    Damage3 "models/bots/boss_bot/boss_tank_gate_damage3.mdl"
-                }
 				StartingPathTrackNode	"boss_path_1_0"
 				OnKilledOutput
 				{
@@ -1719,6 +1716,7 @@ WaveSchedule
 					Target	boss_deploy_relay
 					Action	Trigger
 				}
+                SpawnTemplate Gatetank_sillyhat // Add this to your tank
 			}
 		}
 		WaveSpawn 
@@ -2426,8 +2424,7 @@ WaveSchedule
 			TotalCount 8
 			MaxActive 8
 			SpawnCount 1
-			WaitBeforeStarting 5
-			WaitBetweenSpawns 1
+			WaitBeforeStarting 3
             TotalCurrency 50
 			TFBot
 			{
@@ -2449,8 +2446,7 @@ WaveSchedule
 			TotalCount 8
 			MaxActive 8
 			SpawnCount 1
-			WaitBeforeStarting 10
-			WaitBetweenSpawns 1
+			WaitBeforeStarting 7
 			WaitForAlldead "wave1a_bis1"
             TotalCurrency 50
 			TFBot
