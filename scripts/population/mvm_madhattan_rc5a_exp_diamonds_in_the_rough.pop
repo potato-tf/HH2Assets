@@ -1947,7 +1947,7 @@ WaveSchedule
             }
 			Tank
 			{
-				Health	45000
+				Health	30000
 				Name	tank_boss
                 Skin 1
 				Speed	75
