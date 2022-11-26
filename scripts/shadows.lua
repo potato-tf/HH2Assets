@@ -741,7 +741,7 @@ function ActivateBonusPoints()
 	for _, player in pairs(ents.GetAllPlayers()) do
 		if player:IsRealPlayer() then
 			player:Print(2,"Bonus Points!")
-			player:AcceptInput("$AddCurrency",2000)
+			player:AcceptInput("$AddCurrency",1000)
 			player:PlaySoundToSelf("shadows/powerup_money_01.mp3")
 			player:PlaySoundToSelf("mvm/mvm_money_pickup.wav")
 		end
