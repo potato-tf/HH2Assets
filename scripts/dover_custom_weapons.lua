@@ -974,7 +974,7 @@ end
 
 function ParryAddictionEquip(_, activator)
 	-- fix weird quirk with template being spawned after you switch to a different class
-	if classIndices_Internal[activator:DumpProperties().m_iClass] ~= "Demoman" then
+	if classIndices_Internal[activator.m_iClass] ~= "Demoman" then
 		return
 	end
 

@@ -11,11 +11,9 @@ local classIndices_Internal = {
 }
 
 function RemoveZombieModel(_, activator)
-	local props = activator:DumpProperties()
-	
-	local className = classIndices_Internal[props.m_iClass]
+	local className = classIndices_Internal[activator.m_iClass]
 	local vodooName = "Zombie "..className
-	local skin = props.m_iTeamNum == 2 and 2 or 1 -- non-zombie skin for each team
+	local skin = activator.m_iTeamNum == 2 and 2 or 1 -- non-zombie skin for each team
 
 	activator:AcceptInput("$SetProp$m_bForcedSkin", "1")
 	activator:AcceptInput("$SetProp$m_nForcedSkin", tostring(skin))

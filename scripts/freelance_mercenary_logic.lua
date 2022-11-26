@@ -31,9 +31,7 @@ local function getMaxHealth(player)
 
 	local playerResource = ents.FindByClass("tf_player_manager")
 
-	local props = playerResource:DumpProperties()
-
-	for playerNetIndex, maxHealth in pairs(props.m_iMaxBuffedHealth) do
+	for playerNetIndex, maxHealth in pairs(playerResource.m_iMaxBuffedHealth) do
 		if playerNetIndex == net then
 			return maxHealth
 		end
