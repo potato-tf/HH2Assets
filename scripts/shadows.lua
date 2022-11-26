@@ -95,6 +95,7 @@ local function cashforhits(activator)
 		end
 	end
 
+	
 	callbacks.damagetype = activator:AddCallback(ON_DAMAGE_RECEIVED_PRE, function(_, damageInfo)
 		-- PrintTable(damageInfo)
 		local mult = (DoublePointsDuration > 0) and 2 or 1
@@ -321,10 +322,14 @@ function OnWaveReset()
 			end
 		end
 	end
-	timer.Stop(TextDisplay)
+	if TextDisplay ~= nil then
+		timer.Stop(TextDisplay)
+		TextDisplay = nil
+	end
 end
 
 function OnGameTick()
+	local currencyCollected = ents.FindByClass("tf_player_manager").m_iCurrencyCollected
 	for _, player in pairs(ents.GetAllPlayers()) do
 		if player:IsRealPlayer() then
 			if player.m_bUsingActionSlot == 1 and player.InteractCooldown ~= true then
@@ -339,11 +344,7 @@ function OnGameTick()
 				player.holdTime = 0
 			end
 			player:GetUserId()
-			for k, v in pairs(ents.FindByClass("tf_player_manager"):DumpProperties().m_iUserID) do
-				if v == player:GetUserId() then
-					ents.FindByClass("tf_player_manager"):AcceptInput("$SetProp$m_iCurrencyCollected$" .. k-1, player.m_nCurrency)
-				end
-			end
+			currencyCollected[player:GetNetIndex()+1] = player.m_nCurrency
 			if player.m_nCurrencyDiff ~= player.m_nCurrency then
 				if player.m_nCurrency - player.m_nCurrencyDiff > 0 then
 					player.CashText = 132
