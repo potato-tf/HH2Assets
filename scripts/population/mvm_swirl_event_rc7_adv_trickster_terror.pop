@@ -92,6 +92,12 @@ bozo_mission_be_liek
     PrecacheModel "models/player/vatican/joker/spy.mdl"
     PrecacheModel "models/props_mvm/mvm_comically_small_player_shield.mdl" // What the fuck is this
     PrecacheSound "trickster_terror_joker_laugh.mp3"
+    PrecacheGeneric "materials/models/player/vatican/jokerspy/hand.vtf"
+    PrecacheGeneric "materials/models/player/vatican/jokerspy/material_39.vmt" // ??
+    PrecacheGeneric "materials/models/player/vatican/jokerspy/joker_diff.vtf"
+    PrecacheGeneric "materials/models/player/vatican/jokerspy/joker_head_diff.vtf"
+    PrecacheGeneric "materials/models/player/vatican/jokerspy/joker_head_normals.vtf"
+    PrecacheGeneric "materials/models/player/vatican/jokerspy/joker_normals.vtf"
 
     OverrideSounds
 	{
@@ -2006,6 +2012,7 @@ bozo_mission_be_liek
 				        "override footstep sound set" 6
 			        }
                     Tag bot_giant
+                    DeathSound "mvm/sentrybuster/mvm_sentrybuster_explode.wav"
                 }
                 TFBot
                 {
@@ -2022,6 +2029,7 @@ bozo_mission_be_liek
 					    "voice pitch scale" 0.8
 				    }
                     Tag bot_giant
+                    DeathSound "mvm/sentrybuster/mvm_sentrybuster_explode.wav"
                 }
                 TFBot
                 {
