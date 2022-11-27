@@ -2029,7 +2029,6 @@ bozo_mission_be_liek
 					    "voice pitch scale" 0.8
 				    }
                     Tag bot_giant
-                    DeathSound "mvm/sentrybuster/mvm_sentrybuster_explode.wav"
                 }
                 TFBot
                 {
