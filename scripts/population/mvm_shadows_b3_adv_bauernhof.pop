@@ -118,6 +118,7 @@ WaveSchedule
 	PrecacheModel "models/props_trainyard/cart_bomb_separate.mdl" // nuke
 	PrecacheModel "models\weapons\w_models\w_atomball_blu.mdl" // fat boy
 //	PrecacheModel "models/weapons/w_models/w_rocketbullet.mdl" // Sally+Mustang
+	PrecacheModel "models\props_forest\cliff_wall_09a.mdl" // tank's rock projectile? in case THIS is why it sometimes just doesn't render?
 	
 	PrecacheParticle "eye_powerup_green_lvl_2"
 	PrecacheParticle "utaunt_lightning_bolt"
@@ -208,7 +209,7 @@ WaveSchedule
 	PrecacheSound "shadows/battlelord_death.mp3"
 	PrecacheSound "player/footsteps/giant2.wav"
 
-	OverrideSounds [$SIGSEGV]
+	OverrideSounds  
 	{
 		"Regenerate.Touch" misc/null.wav
 		"MVM.BotStep" cleats_dirt.StepRight
@@ -520,6 +521,7 @@ WaveSchedule
 	{
 		Classname tf_weapon_flamethrower
 		"damage bonus HIDDEN" 3
+		"hidden primary max ammo bonus" 0.5
 	}
 	ItemAttributes // super hot
 	{
@@ -544,6 +546,7 @@ WaveSchedule
 	{
 		Classname tf_weapon_minigun
 		"damage bonus HIDDEN" 1.5
+		"aiming movespeed decreased" 0.0025
 	}
 	ItemAttributes // needs this to work
 	{
@@ -581,6 +584,18 @@ WaveSchedule
 		"armor piercing" 50
 		"damage bonus HIDDEN" 3.75 // should be 150?
 		"dmg max health" 0.05 // spy deserves it because he's pretty rough to play with his limited kit
+	}
+	ItemAttributes
+	{
+		ItemName "The Boston Basher"
+		"damage bonus HIDDEN" 4.29
+		"hit self on miss" -1
+	}
+	ItemAttributes
+	{
+		ItemName "Three-Rune Blade"
+		"damage bonus HIDDEN" 4.29
+		"hit self on miss" -1
 	}
 	ItemAttributes // melee weapon buffs, mostly to boost everything to 150 dmg
 	{
@@ -651,7 +666,7 @@ WaveSchedule
 		Classname saxxy
 		"damage bonus HIDDEN" 2.308
 	}
-	ClassLimit [$SIGSEGV] //Limits the number of specified classes
+	ClassLimit   //Limits the number of specified classes
 	{
 		Scout 2
 		Soldier 2
@@ -663,7 +678,7 @@ WaveSchedule
 		Sniper 2
 		Spy 0
 	}
-	PlayerAttributes [$SIGSEGV]
+	PlayerAttributes  
 	{
 		"crit mod disabled" 0
 		"min respawn time" 4444 // disable scout's quick respawn
@@ -1047,7 +1062,7 @@ WaveSchedule
 			"set_item_texture_wear" 0
 			"damage bonus" 3
 			"dmg penalty vs players" 3
-			"maxammo primary increased" 2.5
+			"maxammo primary increased" 2
 			"cannot be upgraded" 1
 		}
 		"Burning Love" // shotgun
@@ -1055,10 +1070,10 @@ WaveSchedule
 			OriginalItemName "Upgradeable TF_WEAPON_SHOTGUN_PRIMARY" // normal one is engineer-only but THIS ONE is multiclass????
 			"paintkit_proto_def_index" 296 
 			"set_item_texture_wear" 0
-			"damage bonus" 5
+			"damage bonus" 2
 			"dmg penalty vs players" 3
 			"bullets per shot bonus" 1.5
-			"fire rate bonus" 0.8
+			"fire rate bonus" 0.9
 			"faster reload rate" 0.75
 			"maxammo secondary increased" 2.5
 			"Set DamageType Ignite" 1
@@ -1080,6 +1095,7 @@ WaveSchedule
 			"custom impact sound" "misc/doomsday_missile_explosion.wav"
 			"penetrate teammates" 1
 			"Blast radius increased" 2
+			"self dmg push force decreased" 0.5
 			"paintkit_proto_def_index" 296 
 			"set_item_texture_wear" 0
 			"cannot be upgraded" 1
@@ -1094,6 +1110,7 @@ WaveSchedule
 			"stickybomb stick to enemies" 1
 			"penetrate teammates" 1
 			"projectile spread angle penalty" 5
+			"self dmg push force decreased" 0.5
 			"faster reload rate" 0.65
 			"paintkit_proto_def_index" 296 
 			"set_item_texture_wear" 0
@@ -1107,7 +1124,7 @@ WaveSchedule
 			"bullets per shot bonus" 2
 			"maxammo primary increased" 2.5
 			"paintkit_proto_def_index" 296 
-			"aiming movespeed decreased" 2
+			"aiming movespeed decreased" 0.0025
 			"penetrate teammates" 1
 			"set_item_texture_wear" 0
 			"cannot be upgraded" 1
@@ -1195,7 +1212,7 @@ WaveSchedule
 			"dmg penalty vs players" 8
 			"arrow mastery" 3
 			"maxammo primary increased" 1.5
-			"projectile penetration" 1
+	//		"projectile penetration" 1  // oops the arrow does the fucky wucky
 			"penetrate teammates" 1
 			"paintkit_proto_def_index" 296 
 			"set_item_texture_wear" 0
@@ -1937,10 +1954,10 @@ WaveSchedule
 		}
 		WU_MeleeDmg
 		{
-			Name "+20% melee damage"
+			Name "+100% melee damage"
 			Attribute "damage bonus"
-			Increment 0.20
-			Cap 2
+			Increment 1
+			Cap 5
 			Cost 400
 			Tier 1
 			AllowedWeapons
@@ -2127,19 +2144,19 @@ WaveSchedule
 				Classname tf_weapon_crossbow
 			}
 		}
-		WU_ImpactBlast
-		{
-			Name "Grenades explode on impact"
-			Attribute "grenade explode on impact"
-			Increment 1 
-			Cap 1
-			Cost 500
-			Tier 1
-			AllowedWeapons
-			{
-				Classname tf_weapon_grenadelauncher
-			}
-		}
+	//	WU_ImpactBlast
+	//	{
+	//		Name "Grenades explode on impact"
+	//		Attribute "grenade explode on impact"
+	//		Increment 1 
+	//		Cap 1
+	//		Cost 500
+	//		Tier 1
+	//		AllowedWeapons
+	//		{
+	//			Classname tf_weapon_grenadelauncher
+	//		}
+	//	}
 		WU_PaP_T3_Generic // for guns that don't support skins save for DF
 		{
 			Name "+50% Damage bonus"
@@ -4321,6 +4338,11 @@ WaveSchedule
 				Target "relay_enemycount_add"
 				Action "trigger"
 			}
+			OnSpawnOutput
+            {
+                Target "popscript"
+                Action "$OnWaveSpawnBot"
+            }
 		//	OnSpawnOutput // money for kill
         //  {
         //      Target "!activator"
@@ -8589,7 +8611,7 @@ WaveSchedule
 			Scale 1
 			NoIdleSound 1
 			Name Zombie
-			Item "BRAINS"
+	//		Item "BRAINS"
 			CustomEyeParticle "bot_eye_glow"
 			CustomEyeGlowColor "40 180 40"
 			DeathSound =80|physics\body\body_medium_break3.wav
@@ -8601,6 +8623,14 @@ WaveSchedule
 	//			Repeats 0
 	//			Type "Battle cry"
 	//		}
+			ItemAttributes
+			{
+				ItemName TF_WEAPON_BONESAW
+				"damage bonus HIDDEN" 0.62
+				"is invisible" 1
+				"alt-fire disabled" 1 // for heavy AI
+				"custom kill icon" unarmed_combat
+			}
 			CharacterAttributes
 			{
 				"cancel falling damage" 1
@@ -9201,7 +9231,7 @@ WaveSchedule
 			{
 				Default
 				{
-					WeaponSwitch [$SIGSEGV] // swap to melee quick
+					WeaponSwitch   // swap to melee quick
 					{
 						Delay 1
 						Cooldown 0
@@ -9456,7 +9486,7 @@ WaveSchedule
 						"no_jump" 1
 						"reload full clip at once" 1
 					}
-					FireWeapon [$SIGSEGV]
+					FireWeapon  
 					{
 						Delay 0
 						Cooldown 30
