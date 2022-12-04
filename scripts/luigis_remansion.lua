@@ -55,6 +55,51 @@ local chargeDeployedCallback = AddEventCallback("player_chargedeployed", functio
 end)
 
 function BoughtMedibeam(damage, activator)
+	local handle = activator:GetHandleIndex()
+	local medigun = activator:GetPlayerItemBySlot(1)
+	local medigunhandle = medigun:GetHandleIndex()
+	--print(activator:GetPlayerName() .. " bought")
+	
+	--if player disconnects or switches weapons 
+	medigun:AddCallback(ON_REMOVE, function(entity)
+		--print("removed")
+		RemoveMedibeamCallbacks(activator)
+		medibeams[medigunhandle] = nil
+		if timers[medigunhandle] then
+			timer.Stop(timers[medigunhandle])
+			timers[medigunhandle] = nil
+		end
+		if timers[name] then
+			timer.Stop(timers[name])
+			timers[name] = nil
+		end
+	end)
+	
+	activator:AddCallback(ON_KEY_PRESSED, function(_, key)
+		if medigun.m_bHolstered == 0 and key == IN_ATTACK then
+			StartMedigunTrace(activator)
+		end
+		
+		if key == IN_RELOAD and medigun.m_bHolstered == 0 then
+			if medigun:GetItemName() == "The Vaccinator" and medibeams[medigunhandle] then
+			--if vacc, remove the passive effect on bot
+			--chargeresisttype is 0-2
+				medibeams[medigunhandle]:RemoveCond(TF_COND_MEDIGUN_SMALL_BULLET_RESIST + medigun.m_nChargeResistType)
+			end
+		end
+	end)
+	
+	activator:AddCallback(ON_KEY_RELEASED, function(_, key)
+		if key == IN_ATTACK then
+			if timers[name] then --if hold timer was still running, stop it
+				timer.Stop(timers[name])
+				timers[name] = nil
+			end
+		end
+	end)
+end
+
+function StartMedigunTrace(activator)
 	local connectTrace = {
 		start = activator, -- Start position vector. Can also be set to entity, in this case the trace will start from entity eyes position
 		endpos = nil, -- End position vector. If nil, the trace will be fired in `angles` direction with `distance` length
@@ -77,96 +122,57 @@ function BoughtMedibeam(damage, activator)
 	if medigun:GetItemName() == "The Quick-Fix" then
 		isQuickFix = true
 	end	
-		
-	--print(activator:GetPlayerName() .. " bought")
 	
-	--if player disconnects or switches weapons 
-	medigun:AddCallback(ON_REMOVE, function(entity)
-		--print("removed")
-		RemoveMedibeamCallbacks(activator)
+	--print(activator:GetPlayerName() .. " " .. TickCount() .. " pressed")
+	local targetedEntity = 0
+
+	if timers[medigunhandle] then --reset the damage timer if it was already ticking
+		timer.Stop(timers[medigunhandle])
+		timers[medigunhandle] = nil
+	end
+	
+	if medigun.m_hHealingTarget and medigun.m_hHealingTarget.m_iTeamNum == 2 then
+		--if real player, let game do its thing
 		medibeams[medigunhandle] = nil
-		if timers[medigunhandle] then
-			timer.Stop(timers[medigunhandle])
-			timers[medigunhandle] = nil
-		end
-		if timers[name] then
-			timer.Stop(timers[name])
-			timers[name] = nil
-		end
-	end)
+	else
+		targetedEntity = EyeTrace(activator, connectTrace) --initial trace on click
 	
-	activator:AddCallback(ON_KEY_PRESSED, function(_, key)
-		if medigun.m_bHolstered == 0 and key == IN_ATTACK then
-			--print(activator:GetPlayerName() .. " " .. TickCount() .. " pressed")
-			local targetedEntity = 0
-			
-			if timers[medigunhandle] then --reset the damage timer if it was already ticking
-				timer.Stop(timers[medigunhandle])
-				timers[medigunhandle] = nil
-			end
-			
-			if medigun.m_hHealingTarget and medigun.m_hHealingTarget.m_iTeamNum == 2 then
-				--if real player, let game do its thing
-				medibeams[medigunhandle] = nil
-			else
-				targetedEntity = EyeTrace(activator, connectTrace) --initial trace on click
-			
-				if targetedEntity and targetedEntity:IsPlayer() and targetedEntity.m_iTeamNum == 3 then
-					ConnectMedigun(activator, isQuickFix, DAMAGE_PER_HIT, medigun, medigunhandle, targetedEntity)	
-				else --if trace doesn't hit, start hold timer
-				
-					if not timers[name] then
-						timers[name] = timer.Create(.014, function() --run a trace every .1s until we hit something or key is released
-							--print("hold timer")
-							if medigun.m_bHolstered == 0 and activator.m_bRageDraining == 0 
-								and activator:InCond(TF_COND_TAUNTING) == 0 then 	
-								
-								if medigun.m_hHealingTarget and medigun.m_hHealingTarget.m_iTeamNum == 2 then --healing a friendly
-									--print(activator:GetPlayerName() .. " " .. TickCount() .. " started healing, stopping tick")
-									timer.Stop(timers[name])
-									timers[name] = nil
-									medibeams[medigunhandle] = nil
-								else 
-									targetedEntity = EyeTrace(activator, connectTrace)
-								
-									if targetedEntity and targetedEntity:IsPlayer() and targetedEntity.m_iTeamNum == 3 then 
-										--hit a blu bot
-										--print(activator:GetPlayerName() .. " " .. TickCount() .. " started damaging, stopping tick")
-										timer.Stop(timers[name])
-										timers[name] = nil
-										ConnectMedigun(activator, isQuickFix, DAMAGE_PER_HIT, medigun, medigunhandle, targetedEntity)
-									end
-								end
-							else --if shield is draining or medigun is holstered, stop looking for a target
-								--print(activator:GetPlayerName() .. " " .. TickCount() .. " released, stopping")
+		if targetedEntity and targetedEntity:IsPlayer() and targetedEntity.m_iTeamNum == 3 then
+			ConnectMedigun(activator, isQuickFix, DAMAGE_PER_HIT, medigun, medigunhandle, targetedEntity)	
+		else --if trace doesn't hit, start hold timer
+		
+			if not timers[name] then
+				timers[name] = timer.Create(.014, function() --run a trace every .1s until we hit something or key is released
+					--print("hold timer")
+					if medigun.m_bHolstered == 0 and activator.m_bRageDraining == 0 
+						and activator:InCond(TF_COND_TAUNTING) == 0 then 	
+						
+						if medigun.m_hHealingTarget and medigun.m_hHealingTarget.m_iTeamNum == 2 then --healing a friendly
+							--print(activator:GetPlayerName() .. " " .. TickCount() .. " started healing, stopping tick")
+							timer.Stop(timers[name])
+							timers[name] = nil
+							medibeams[medigunhandle] = nil
+						else 
+							targetedEntity = EyeTrace(activator, connectTrace)
+						
+							if targetedEntity and targetedEntity:IsPlayer() and targetedEntity.m_iTeamNum == 3 then 
+								--hit a blu bot
+								--print(activator:GetPlayerName() .. " " .. TickCount() .. " started damaging, stopping tick")
 								timer.Stop(timers[name])
 								timers[name] = nil
+								ConnectMedigun(activator, isQuickFix, DAMAGE_PER_HIT, medigun, medigunhandle, targetedEntity)
 							end
-						end, 0)
+						end
+					else --if shield is draining or medigun is holstered, stop looking for a target
+						--print(activator:GetPlayerName() .. " " .. TickCount() .. " released, stopping")
+						timer.Stop(timers[name])
+						timers[name] = nil
 					end
-					
-				end
+				end, 0)
 			end
+			
 		end
-		
-		if key == IN_RELOAD and medigun.m_bHolstered == 0 then
-			if medigun:GetItemName() == "The Vaccinator" and medibeams[medigunhandle] then
-			--if vacc, remove the passive effect on bot
-			--chargeresisttype is 0-2
-				medibeams[medigunhandle]:RemoveCond(TF_COND_MEDIGUN_SMALL_BULLET_RESIST + medigun.m_nChargeResistType)
-			end
-		end
-	end)
-	
-	activator:AddCallback(ON_KEY_RELEASED, function(_, key)
-		if key == IN_ATTACK then
-			if timers[name] then --if hold timer was still running, stop it
-				timer.Stop(timers[name])
-				timers[name] = nil
-			end
-		end
-	end)
-end
+	end
 
 function EyeTrace(player, connectTrace, targetedEntity) --trace from player's eyes to something in range 
 	local tracetable = {}
@@ -305,6 +311,10 @@ function ResetMedigun(medigun, medigunhandle) --reset medigun to defaultish stat
 	if timers[medigunhandle] then
 		timer.Stop(timers[medigunhandle])
 		timers[medigunhandle] = nil
+	end
+	local player = medigun.m_hOwner
+	if player.m_nButtons & IN_ATTACK then
+		StartMedigunTrace(player)
 	end
 end
 
