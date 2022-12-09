@@ -37,9 +37,9 @@ jobs:
       - name: Create asset pack
         run: |
           mv 'tf/.github/HOW TO INSTALL!.gif' .
-          zip -r hh2-assets.zip tf -x '*/.*' -x '*.bz2'
+          zip -r hh2-assets.zip tf -x '*/.*' -x '*.bz2' -x 'tf_mvm_missioncycle.res'
           zip hh2-assets.zip 'HOW TO INSTALL!.gif'
-          zip -r hh2-assets-no-maps.zip tf -x '*/.*' -x '*.bz2' -x 'tf/maps/*'
+          zip -r hh2-assets-no-maps.zip tf -x '*/.*' -x '*.bz2' -x 'tf/maps/*' -x 'tf_mvm_missioncycle.res'
           zip hh2-assets-no-maps.zip 'HOW TO INSTALL!.gif'
           rm 'HOW TO INSTALL!.gif'
           
