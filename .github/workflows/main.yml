@@ -43,7 +43,7 @@ jobs:
           mv 'tf/.github/HOW TO INSTALL!.gif' .
           zip -r hh2-assets.zip tf -x '*/.*' -x '*.bz2'
           zip hh2-assets.zip 'HOW TO INSTALL!.gif'
-          zip -r hh2-assets-no-maps.zip tf -x '.*' -x '*.bz2' -x 'maps/*'
+          zip -r hh2-assets-no-maps.zip tf -x '*/.*' -x '*.bz2' -x 'tf/maps/*'
           zip hh2-assets-no-maps.zip 'HOW TO INSTALL!.gif'
           rm 'HOW TO INSTALL!.gif'
           cd tf
