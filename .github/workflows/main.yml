@@ -26,9 +26,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
             path: tf
-      - name: Something
-        run: |
-          pwd
 
       - name: Setup SSH Keys and known_hosts
         env:
@@ -39,7 +36,6 @@ jobs:
         
       - name: Create asset pack
         run: |
-          pwd
           mv 'tf/.github/HOW TO INSTALL!.gif' .
           zip -r hh2-assets.zip tf -x '*/.*' -x '*.bz2'
           zip hh2-assets.zip 'HOW TO INSTALL!.gif'
@@ -70,7 +66,7 @@ jobs:
           cd tf
           for i in  "22 pterodactyl@us.potato.tf" "3438 pterodactyl@us.potato.tf" "8246 pterodactyl@us.potato.tf" "22 pterodactyl@sgp.potato.tf" "22 pterodactyl@eu.potato.tf" "22 pterodactyl@eu2.potato.tf" "22 pterodactyl@eu9.potato.tf"; do a=( $i );
           {
-          rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude=".bz2" --exclude="tf_mvm_missioncycle.res" --exclude="mapcycle.txt" . ${a[1]}:/var/tf2server/tf/hh2/
+          rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="*.bz2" --exclude="tf_mvm_missioncycle.res" --exclude="mapcycle.txt" . ${a[1]}:/var/tf2server/tf/hh2/
           ssh -p ${a[0]} -o StrictHostKeyChecking=no ${a[1]} mkdir -p /var/www/html/gameassets/hh2
           rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --include="*/" --include="*.bz2" --exclude="*" . ${a[1]}:/var/www/html/gameassets/hh2/
           } &
