@@ -41,16 +41,18 @@ jobs:
         run: |
           pwd
           mv 'tf/.github/HOW TO INSTALL!.gif' .
-          zip -r archive-assets.zip tf -x '.*' -x '*.bz2'
-          zip archive-assets.zip 'HOW TO INSTALL!.gif'
-          zip -r archive-assets-no-maps.zip tf -x '.*' -x '*.bz2' -x 'maps/*'
-          zip archive-assets-no-maps.zip 'HOW TO INSTALL!.gif'
+          zip -r hh2-assets.zip tf -x '*/.*' -x '*.bz2'
+          zip hh2-assets.zip 'HOW TO INSTALL!.gif'
+          zip -r hh2-assets-no-maps.zip tf -x '.*' -x '*.bz2' -x 'maps/*'
+          zip hh2-assets-no-maps.zip 'HOW TO INSTALL!.gif'
           rm 'HOW TO INSTALL!.gif'
-          
-      - name: Create bz2 archives
-        run: |
-          pwd
-          find . -type f -not \( -name "*.pop" -or -name "*.nav" -or -name "*.res" -or -name "*.bz2" -or -name "*.lua" -or -name "*.nut" \) \( ! -regex '.*/\..*' \) -exec bzip2 -f -k {} +
+          cd tf
+
+      # - name: Create bz2 archives
+      #   run: |
+      #     pwd
+      #     cd tf
+      #     find . -type f -not \( -name "*.pop" -or -name "*.nav" -or -name "*.res" -or -name "*.bz2" -or -name "*.lua" -or -name "*.nut" \) \( ! -regex '.*/\..*' \) -exec bzip2 -f -k {} +
 
           
       - name: Upload to R2
@@ -68,15 +70,16 @@ jobs:
         env:
             SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          cd tf
-          for i in  "22 pterodactyl@us.potato.tf" "3438 pterodactyl@us.potato.tf" "8246 pterodactyl@us.potato.tf" "22 pterodactyl@usw.potato.tf" "22 pterodactyl@sgp.potato.tf" "22 pterodactyl@sgp2.potato.tf" "22 pterodactyl@eu.potato.tf" "22 pterodactyl@eu2.potato.tf" "22 pterodactyl@eu4.potato.tf" "22 pterodactyl@eu9.potato.tf"; do a=( $i );
-          {
-          rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="tf_mvm_missioncycle.res" --exclude="mapcycle.txt" . ${a[1]}:/var/tf2server/tf/hh2/
-          ssh -p ${a[0]} ${a[1]} mkdir -p /var/www/html/gameassets
-          ssh -p ${a[0]} ${a[1]} ln -s /var/tf2server/tf/hh2 /var/www/html/gameassets/hh2
-          } &
-          done
-          wait
+          pwd
+
+        # for i in  "22 pterodactyl@us.potato.tf" "3438 pterodactyl@us.potato.tf" "8246 pterodactyl@us.potato.tf" "22 pterodactyl@usw.potato.tf" "22 pterodactyl@sgp.potato.tf" "22 pterodactyl@sgp2.potato.tf" "22 pterodactyl@eu.potato.tf" "22 pterodactyl@eu2.potato.tf" "22 pterodactyl@eu4.potato.tf" "22 pterodactyl@eu9.potato.tf"; do a=( $i );
+        # {
+        # rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="tf_mvm_missioncycle.res" --exclude="mapcycle.txt" . ${a[1]}:/var/tf2server/tf/hh2/
+        # ssh -p ${a[0]} ${a[1]} mkdir -p /var/www/html/gameassets
+        # ssh -p ${a[0]} ${a[1]} ln -s /var/tf2server/tf/hh2 /var/www/html/gameassets/hh2
+        # } &
+        # done
+        # wait
   # webdownload:
   #   needs: build
   #   runs-on: ubuntu-latest
